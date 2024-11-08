@@ -65,15 +65,12 @@ const PortfolioClassic = (props) => {
                                     className="portfolio-classic">
                                     <div className="portfolio-image" style={style}>
                                         {item.img && <img className="w-full" src={item.img} height={440} width={540} alt="portfolio-classic" />}
-                                        <div className="portfolio-icon">
-                                            <div onClick={() => handleClick(i)} ><i className="fas fa-search"></i> </div>
-                                            <Link to={item.link} target={props.target} aria-label="link"> <i className="fas fa-link"></i></Link>
-                                        </div>
+                        
                                     </div>
                                     {
                                         (item.title || item.subtitle) && (
                                             <div className="portfolio-caption">
-                                                {item.title && <Link aria-label="link" to={item.link}><span>{item.title}</span></Link>}
+                                                {item.title && <span>{item.title}</span>}
                                                 {item.subtitle && <span className="text-md block mb-[1%]">{item.subtitle}</span>}
                                             </div>
                                         )

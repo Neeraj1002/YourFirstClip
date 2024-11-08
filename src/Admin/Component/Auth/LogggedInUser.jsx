@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import {AuthContext}  from '../../../Context/Admin/AuthContext'
 
 const LoggedInUserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { logout } = useContext(AuthContext);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
-    // Add logout functionality here
-    console.log('User logged out');
+    logout()
   };
 
   return (
-    <div className="relative">
+    <div className="">
       <div
         className="flex items-center space-x-4 cursor-pointer"
         onClick={toggleDropdown}
       >
-        <img
+        {/* <img
           className="w-8 h-8 rounded-full"
-          src="/path-to-profile-pic.jpg" // Replace with actual profile picture path
+          //src="/path-to-profile-pic.jpg" // Replace with actual profile picture path
           alt="User Profile"
-        />
+        /> */}
         <span>John Doe</span> {/* Replace with dynamic username */}
       </div>
 

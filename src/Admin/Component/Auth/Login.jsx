@@ -1,52 +1,47 @@
-// src/pages/LoginPage.jsx
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link,useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Spinner from '../Common/Spinner'; // Adjust path as needed
 import ToastMessage, { notifySuccess, notifyError } from '../Common/ToastMessage'; // Adjust path as needed
+import { loginUser } from '../../../Api/Admin/authApi'; // Import login API
+import {AuthContext}  from '../../../Context/Admin/AuthContext'
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const navigate = useNavigate();
 
-  const navigate = useNavigate ()
+  const { login } = useContext(AuthContext);
   const onSubmit = async (data) => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
-      const response = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json', // Ensure this header is included
-        },
-        body: JSON.stringify(data), // Convert data to JSON string
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        notifySuccess("Login successful"); // Show success message
-        setTimeout(() => {
-          reset(); // Reset form fields
-          navigate('/admin/dashboard'); // Redirect to login page
-        }, 2000); // 2000 milliseconds = 2 seconds
+      const response = await loginUser(data); // Call the login API here
       
-        // Handle successful login (e.g., redirect or update state)
+      if (response) {
+        const result = response.data;
+        if (result) {
+          login(result)
+        }
+        notifySuccess("Login successful");
+        setTimeout(() => {
+          reset();
+          navigate('/admin');
+        }, 2000);
       } else {
-        // Handle server errors or validation errors
-        const errorData = await response.json();
-        notifyError(errorData.message || "Something went wrong"); // Show error message
+        const errorData = await response.data;
+        notifyError(errorData.message || "Something went wrong");
       }
     } catch (error) {
-      console.error('Error:', error); // Handle any errors
-      notifyError("Network error"); // Show network error message
+      notifyError(error.response.data.message || "Network error");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md md:max-w-lg lg:max-w-xl p-8 bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="flex justify-center items-center p-4 ">
+      <div className="p-8 bg-white shadow-md rounded-lg h-full w-full">
+        <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
         {loading && <Spinner />} {/* Show spinner while loading */}
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Email Field */}
@@ -87,19 +82,21 @@ const LoginPage = () => {
             )}
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            disabled={loading}
-          >
-            Login
-          </button>
+          <div className='mt-5'>
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                disabled={loading}
+              >
+                Login
+              </button>
 
-          {/* Navigate to Sign Up */}
-          <div className="mt-4 text-center">
-            <p className="text-gray-700">Don't have an account?</p>
-            <Link to="/admin/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+              {/* Navigate to Sign Up */}
+              <div className="mt-4 text-center">
+                <p className="text-gray-700">Don't have an account?</p>
+                <Link to="/signup" className="text-blue-500 hover:underline">Sign Up</Link>
+             </div>
           </div>
         </form>
       </div>
