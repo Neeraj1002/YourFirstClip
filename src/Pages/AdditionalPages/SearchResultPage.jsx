@@ -5,13 +5,11 @@ import { Link, useLocation } from "react-router-dom";
 import { Col, Container, Navbar, Row } from "react-bootstrap";
 
 // Components
-import BlogGrid from '../../Components/Blogs/BlogGrid';
 import Header, { HeaderCart, HeaderLanguage, HeaderNav, Menu, SearchBar, } from "../../Components/Header/Header";
 import FooterStyle01 from '../../Components/Footers/FooterStyle01';
 import SideButtons from "../../Components/SideButtons";
 
-// Data
-import { blogData } from '../../Components/Blogs/BlogData';
+
 
 const SearchResultPage = (props) => {
   const searchresult = useLocation()
@@ -68,17 +66,7 @@ const SearchResultPage = (props) => {
       </section>
       {/* Section End */}
 
-      {/* Section Start */}
-      <section className="px-[11%] xl:px-[2%] xs:px-0 bg-lightgray py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
-        <Container fluid>
-          <Row>
-            <Col xs={12} className="xs:px-0">
-              <BlogGrid overlay="#374162" pagination={true} grid="grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large" data={blogData.slice(0, 12)} />
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      {/* Section Start */}
+  
 
       {/* Footer Start */}
       <FooterStyle01 theme="dark" className="text-slateblue bg-[#262b35]" />

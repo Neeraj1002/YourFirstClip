@@ -27,7 +27,6 @@ import { Link as ScrollTo } from "react-scroll"
 // Data
 import { ClientData01 } from "../../Components/Clients/ClientsData";
 import { fancyTextBox04 } from '../../Components/FancyTextBox/FancyTextBoxData';
-import { TeamData04 } from '../../Components/Team/TeamData';
 
 const TestimonialsCarouselData = [
   {
@@ -375,7 +374,7 @@ const AboutUsPage = (props) => {
               <h5 className="text-darkgray font-medium">Creative people</h5>
             </m.div>
           </Row>
-          <Team
+          {/* <Team
             themeColor="light"
             overlay={["#b783fffa", "#e37be0fa", "#fa7cc1fa", "#ff85a6fa", "#ff9393fa"]}
             theme='team-style-04'
@@ -385,7 +384,7 @@ const AboutUsPage = (props) => {
             animationDelay={0.3}
             carousel={false}
             className="team-about-us"
-            carouselOption={{ slidesPerView: 3, spaceBetween: 30, loop: true, navigation: true, autoplay: { delay: 3000, disableOnInteraction: true }, pagination: { dynamicBullets: true, clickable: true } }} />
+            carouselOption={{ slidesPerView: 3, spaceBetween: 30, loop: true, navigation: true, autoplay: { delay: 3000, disableOnInteraction: true }, pagination: { dynamicBullets: true, clickable: true } }} /> */}
           <div className="bg-[#ededed] mb-24 mt-12 w-full h-[1px]"></div>
           <Row className="items-center justify-center">
             <Col xl={7} md={8} sm={10} className="text-start md:text-center sm:mb-[30px]">

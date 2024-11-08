@@ -12,12 +12,10 @@ import { Link as ScrollTo } from "react-scroll"
 // Components
 import Header, { HeaderNav, Menu } from '../../Components/Header/Header'
 import { fadeIn, fadeInRight, fadeInLeft } from '../../Functions/GlobalAnimations'
-import BlogMasonry from '../../Components/Blogs/BlogMasonry'
 import Buttons from '../../Components/Button/Buttons'
 import Clients from '../../Components/Clients/Clients'
 import IconWithText from '../../Components/IconWithText/IconWithText'
 import PortfolioBordered from '../../Components/Portfolio/PortfolioBordered'
-import PricingTable02 from '../../Components/PricingTable/PricingTable02'
 import SocialIcons from '../../Components/SocialIcon/SocialIcons'
 import { Input } from '../../Components/Form/Form'
 import MessageBox from '../../Components/MessageBox/MessageBox'
@@ -28,7 +26,6 @@ import { resetForm, sendEmail } from "../../Functions/Utilities";
 
 // Data
 import { IconWithTextData_05, IconWithTextData_08 } from '../../Components/IconWithText/IconWithTextData'
-import { blogData } from "../../Components/Blogs/BlogData";
 import { FilterData } from '../../Components/Portfolio/PortfolioData';
 
 const FooterSocialIconData = [
@@ -183,8 +180,6 @@ const ClientData = [
     },
 ]
 
-// Filter the blog data category wise
-const blogMasonryData = blogData.filter((item) => item.blogType === "masonry").filter(item => item.category.includes("desinagency"));
 
 const DesignagencyPage = (props) => {
     return (
@@ -317,9 +312,7 @@ const DesignagencyPage = (props) => {
                                 <p className="w-[90%] sm:w-full mb-[25px]">Lorem ipsum dolor amet consectetur adipiscing do eiusmod tempor incididunt labore dolore magna ut enim ad minim veniam nostrud ullamco laboris nisi commodo.</p>
                                 <Buttons ariaLabel="Pricing packages" to="/page/pricing-packages" className="mt-[20px] font-medium rounded-none font-serif uppercase btn-transparent hover:text-white md:mb-[15px]" color="#232323" size="lg" themeColor="#232323" title="Pricing packages" />
                             </Col>
-                            <Col xl={{ span: 6, offset: 2 }} lg={7} className="md:pl-[25px] md:pr-[35px] sm:px-[15px]">
-                                <PricingTable02 grid="row-cols-1 row-cols-md-2 justify-center items-center gap-y-[30px]" theme="pricing-table-style-02 xs:px-[15px]" data={pricingTable} />
-                            </Col>
+                          
                         </m.div>
                         <Row className="items-center justify-center mt-40 md:mt-28">
                             <m.div className="text-right md:mb-20 xs:mb-16 md:text-center col-lg-3 col-md-5 col-sm-6 order-1" {...fadeInLeft}>
@@ -355,11 +348,6 @@ const DesignagencyPage = (props) => {
                             </Col>
                             <Col sm={6} className="text-right xs:text-center">
                                 <Buttons ariaLabel="all articles" to="/blogs/blog-masonry" className="font-medium font-serif uppercase btn-link after:h-[2px] md:mb-[15px] after:bg-darkgray hover:text-darkgray" color="#232323" title="all articles" size="xlg" />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className="px-sm-0">
-                                <BlogMasonry pagination={false} grid="mt-28 md:mt-12 grid grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large" className="design-agency-blog-masonry" data={blogMasonryData} />
                             </Col>
                         </Row>
                     </Container>

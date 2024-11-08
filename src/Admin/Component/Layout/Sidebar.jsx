@@ -1,24 +1,32 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="w-64 bg-gray-900 text-white flex flex-col p-4">
-      <div className="mb-8">
-        <h2 className="text-lg font-bold">Profiles</h2>
-        <ul>
-          {/* Add profile links here */}
-          <li className="mt-2">Profile 1</li>
-          <li className="mt-2">Profile 2</li>
-        </ul>
-      </div>
-      <div>
-        <h2 className="text-lg font-bold">Users</h2>
-        <ul>
-          {/* Add user links here */}
-          <li className="mt-2">User 1</li>
-          <li className="mt-2">User 2</li>
-        </ul>
-      </div>
+    <div className="bg-gray-800 text-white w-64 p-6">
+      <h2 className="text-xl font-bold mb-6">Dashboard</h2>
+      <ul>
+        <li
+          className="mb-4 p-2 rounded cursor-pointer"
+          onClick={() => navigate('/admin')}
+        >
+          Dashboard Overview
+        </li>
+        <li
+          className="mb-4 p-2 rounded cursor-pointer"
+          onClick={() => navigate('/admin/users')}
+        >
+          Users
+        </li>
+        <li
+          className="p-2 rounded cursor-pointer"
+          onClick={() => navigate('/admin/portfolios')}
+        >
+          Portfolios
+        </li>
+      </ul>
     </div>
   );
 };

@@ -11,12 +11,9 @@ import { Link as ScrollTo } from "react-scroll"
 import { Header, HeaderCart, HeaderLanguage, HeaderNav, Menu, SearchBar } from "../../Components/Header/Header";
 import { fadeIn, fadeInLeft } from '../../Functions/GlobalAnimations';
 import { TextAnime } from '../../Components/FancyText/FancyText';
-import Piechart from '../../Components/PieChart/PieChart'
 import Buttons from '../../Components/Button/Buttons'
-import Tab01 from '../../Components/Tab/Tab01'
 import Counter from '../../Components/Counters/Counter'
 import Lists from '../../Components/Lists/Lists';
-import Team from '../../Components/Team/Team';
 import Overlap from '../../Components/Overlap/Overlap';
 import FooterStyle01 from '../../Components/Footers/FooterStyle01';
 import CustomModal from '../../Components/CustomModal'
@@ -24,8 +21,6 @@ import SideButtons from "../../Components/SideButtons";
 // Data
 import { CounterData01 } from '../../Components/Counters/CounterData';
 import { ListData01 } from '../../Components/Lists/ListsData';
-import { PiechartData1 } from '../../Components/PieChart/PieChartData';
-import { TeamData02 } from '../../Components/Team/TeamData';
 
 const IconWithText = lazy(() => import('../../Components/IconWithText/IconWithText'))
 
@@ -222,11 +217,6 @@ const WhatWeOfferPage = (props) => {
               <div className="w-full h-[1px] bg-mediumgray mt-28 mb-32 sm:my-20"></div>
             </Col>
           </Row>
-          <Row className="justify-center">
-            <Col lg={11}>
-              <Tab01 data={TabData} />
-            </Col>
-          </Row>
         </Container>
       </m.section>
       {/* Section End */}
@@ -253,23 +243,6 @@ const WhatWeOfferPage = (props) => {
       </section>
       {/* Section End */}
 
-      {/* Section Start */}
-      <section className="py-[130px] lg:py-[95px] md:py-[75px] sm:py-[50px] overflow-hidden">
-        <Container>
-          <Piechart
-            className="text-center"
-            grid="row-cols-1 row-cols-md-3 row-cols-sm-2 justify-center gap-y-10"
-            theme="piechart-style-01"
-            data={PiechartData1}
-            pathColor={['#be85f5', '#fc9297']}
-            trailColor="#f5f5f5"
-            pathWidth={7}
-            trailWidth={7}
-            textStyle={{ fontSize: "32px", fill: "#232323" }}
-          />
-        </Container>
-      </section>
-      {/* Section End */}
 
       {/* Parallax Scrolling Start */}
       <div className="h-[600px] md:h-[450px] sm:h-[350px] bg-top overflow-hidden relative">
@@ -315,7 +288,7 @@ const WhatWeOfferPage = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col>
+            {/* <Col>
               <Team
                 themeColor="dark"
                 theme='team-style-02'
@@ -326,7 +299,7 @@ const WhatWeOfferPage = (props) => {
                 animation={fadeIn}
                 carousel={false}
                 carouselOption={{ slidesPerView: 3, spaceBetween: 30, loop: true, navigation: false, autoplay: { delay: 3000, disableOnInteraction: false }, pagination: { dynamicBullets: false, clickable: true } }} />
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </m.section>
