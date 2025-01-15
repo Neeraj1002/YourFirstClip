@@ -1,12 +1,11 @@
 import axios from 'axios';
 import {LOGIN,SIGNUP} from '../../Admin/Constant/Constant'
 
-// Define the base URL for the API
-const API_BASE_URL = 'http://localhost:3000/api'; // Replace with your actual API base URL
+const API_URL = process.env.REACT_APP_API_URL || 'https://api.yourfirstclip.com/api';
 
 // API call to log in a user
 export const loginUser = async (data) => {
-  const response = await axios.post(`${API_BASE_URL}${LOGIN}`, data, {
+  const response = await axios.post(`${API_URL}${LOGIN}`, data, {
     headers: {
       "Content-Type": "application/json"
     },
@@ -16,7 +15,7 @@ export const loginUser = async (data) => {
 
 // API call to sign up a new user (if needed)
 export const registerUser = async (userData) => {
-  const response = await axios.post(`${API_BASE_URL}${SIGNUP}`, userData, {
+  const response = await axios.post(`${API_URL}${SIGNUP}`, userData, {
     headers: {
       "Content-Type": "application/json"
     },
@@ -26,6 +25,6 @@ export const registerUser = async (userData) => {
 
 // API call to verify a token (optional, if your backend has a route for this)
 export const verifyToken = async (token) => {
-  const response = await axios.post(`${API_BASE_URL}/auth/verify-token`, { token });
+  const response = await axios.post(`${API_URL}/auth/verify-token`, { token });
   return response.data;
 };
