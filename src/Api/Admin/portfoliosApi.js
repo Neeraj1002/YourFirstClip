@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000/api'; // Use environment variable
+
+const API_URL = process.env.REACT_APP_API_URL || 'https://api.yourfirstclip.com';
+
 
 // Create an Axios instance with default configurations
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
