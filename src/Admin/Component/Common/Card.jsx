@@ -1,19 +1,22 @@
-import React from 'react';
+import { Briefcase, Users } from "lucide-react"; // Make sure lucide-react is installed!
 
-const Card = ({ title, count, icon, onClick }) => {
+const Card = ({ title, count, iconType, onClick }) => {
+  // Ensure that iconType is a string
+  const IconComponent = iconType === "portfolio" ? Briefcase : Users;
+
   return (
-    <div
-      className="bg-white shadow-md rounded-lg p-6 flex items-center cursor-pointer"
-      onClick={onClick}
-    >
-      <div className="mr-4">
-        <div className="text-3xl font-bold">{count}</div>
-        <div className="text-gray-600">{title}</div>
-      </div>
-      <div className="ml-auto">
-        <img src={icon} alt={`${title} Icon`} className="w-12 h-12" />
+    <div className="flex flex-col items-center text-center">
+      <div className="text-lg font-semibold text-gray-700 mb-3">{title}</div>
+
+      <div
+        className="bg-gray-700 hover:bg-gray-500 shadow-lg rounded-xl p-6 flex flex-col items-center justify-center 
+        w-40 h-40 sm:w-48 sm:h-48 cursor-pointer transition-all duration-300 transform hover:scale-110 hover:shadow-[24px]"
+        onClick={onClick}
+      >
+        <div className="text-[28px] font-bold text-white">{count}</div>
       </div>
     </div>
+
   );
 };
 

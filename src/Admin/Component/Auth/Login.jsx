@@ -39,11 +39,12 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center p-4 ">
-      <div className="p-8 bg-white shadow-md rounded-lg h-full w-full">
-        <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+    <div className="flex h-[70vh] justify-center items-center p-4 my-8 w-full">
+      <div className="flex flex-col gap-y-12 px-8  bg-white shadow-md rounded-lg h-full w-[35%]">
+        <h2 className="text-[48px] font-bold text-center">Login</h2>
         {loading && <Spinner />} {/* Show spinner while loading */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className='h-screen py-2 flex flex-col gap-y-12'>
+          <div>
           {/* Email Field */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
@@ -81,8 +82,8 @@ const LoginPage = () => {
               </p>
             )}
           </div>
-
-          <div className='mt-5'>
+          </div>
+          <div className='mt-8 py-4'>
               {/* Submit Button */}
               <button
                 type="submit"

@@ -42,12 +42,12 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-full bg-gray-100">
-      <div className="w-full max-w-2xl p-8 bg-white h-full shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+    <div className="flex h-[80vh] justify-center items-center  w-full">
+      <div className="flex flex-col gap-y-12 w-full p-8 h-full shadow-md rounded-lg  w-[35%]">
+        <h2 className="text-[48px] font-bold text-center">Sign Up</h2>
         {loading && <Spinner />} {/* Show spinner while loading */}
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="h-screen py-2 flex flex-col gap-y-12 ">
+          <div className="grid grid-cols-2 gap-12">
             {/* Name Field */}
             <div className="mb-4">
               <label
@@ -206,7 +206,7 @@ const SignupPage = () => {
               )}
             </div>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 py-4">
             {/* Submit Button */}
             <button
               type="submit"
