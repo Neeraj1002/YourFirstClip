@@ -65,12 +65,12 @@ const Table = ({ columns, data, onView, onEdit, onDelete, onAdd, pageTitle }) =>
                 <td className="py-2 px-4 whitespace-nowrap">{row.type}</td>
                 <td className="py-2 px-4">
                   <a
-                    href={row.youtubeLink}
+                    href={'https://www.youtube.com/watch?v='+row.videoId}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline"
                   >
-                    Link
+                    View
                   </a>
                 </td>
                 <td className="py-2 px-4 text-center whitespace-nowrap">{row.isLive ? 'Yes' : 'No'}</td>

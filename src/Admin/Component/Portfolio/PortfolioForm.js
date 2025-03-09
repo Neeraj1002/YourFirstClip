@@ -2,7 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-// Validation schema using Yup
+
+// Validation schema
 const validationSchema = Yup.object({
   title: Yup.string().required('Title is required'),
   description: Yup.string().required('Description is required'),
@@ -18,17 +19,19 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
     initialValues: {
       title: portfolio?.title || '',
       description: portfolio?.description || '',
-      youtubeLink: portfolio?.youtubeLink || '',
-      type: portfolio?.type || 'TVC',
+      youtubeLink: portfolio?.videoId 
+      ? `https://www.youtube.com/watch?v=${portfolio.videoId}` 
+      : '',      type: portfolio?.type || 'TVC',
       isLive: portfolio?.isLive || false,
     },
     validationSchema,
     onSubmit: (values) => {
+      // Send full YouTube link as is to the backend
       onSave(values);
     },
   });
-
-  // Helper function to render inputs with formik's error handling
+  
+  // Helper function to render inputs
   const renderInput = (name, label, type = 'text', as = 'input') => (
     <div className="mb-4">
       <label htmlFor={name} className="block text-gray-700 font-semibold mb-1">
@@ -70,19 +73,11 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
           : 'Add New Portfolio'}
       </h2>
 
-      {/* Custom Grid Layout */}
+      {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Title (spans 2 columns) */}
-        <div className="md:col-span-2">
-          {renderInput('title', 'Title')}
-        </div>
+        <div className="md:col-span-2">{renderInput('title', 'Title')}</div>
+        <div className="md:col-span-2">{renderInput('youtubeLink', 'YouTube Link')}</div>
 
-        {/* YouTube Link (spans 2 columns) */}
-        <div className="md:col-span-2">
-          {renderInput('youtubeLink', 'YouTube Link')}
-        </div>
-
-        {/* Type (spans 1 column) */}
         <div className="md:col-span-1">
           <label htmlFor="type" className="block text-gray-700 font-semibold mb-1">
             Type
@@ -114,14 +109,12 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
             <option value="BRANDED_CONTENT">Branded Content</option>
             <option value="TRAINING_VIDEO">Training Video</option>
             <option value="YOUTUBE_INFLUENCERS_EDIT">YouTube Influencers Edit</option>
-       
           </select>
           {formik.touched.type && formik.errors.type && (
             <div className="text-red-500 text-sm mt-1">{formik.errors.type}</div>
           )}
         </div>
 
-        {/* Live Checkbox (spans 1 column) */}
         <div className="md:col-span-1 flex items-center">
           <input
             type="checkbox"
@@ -139,7 +132,6 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
           </label>
         </div>
 
-        {/* Description (spans 4 columns) */}
         <div className="md:col-span-4">
           {renderInput('description', 'Description', 'text', 'textarea')}
         </div>
