@@ -17,7 +17,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
-    token: localStorage.getItem('token'),
     user: localStorage.getItem('token') ? decodeToken(localStorage.getItem('token')) : null,
   });
 
@@ -34,6 +33,38 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('token');
     setAuth({ token: null, user: null });
   };
+
+  // Logout on tab close
+  window.addEventListener('beforeunload', () => {
+    logout();
+  });
+
+  // Logout after a period of inactivity (e.g., 30 minutes)
+  const inactivityTimeout = 30 * 60 * 1000; // 30 minutes
+  let timeoutId;
+
+  const resetInactivityTimeout = () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(logout, inactivityTimeout);
+  };
+
+  const handleUserActivity = () => {
+    resetInactivityTimeout();
+  };
+
+  // Set up activity listeners
+  window.addEventListener('mousemove', handleUserActivity);
+  window.addEventListener('keydown', handleUserActivity);
+
+  // Initialize timeout on component mount
+  React.useEffect(() => {
+    resetInactivityTimeout();
+    return () => {
+      clearTimeout(timeoutId); // Clear timeout if component unmounts
+      window.removeEventListener('mousemove', handleUserActivity);
+      window.removeEventListener('keydown', handleUserActivity);
+    };
+  }, []);
 
  
 

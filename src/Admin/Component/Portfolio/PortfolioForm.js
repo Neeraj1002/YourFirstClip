@@ -63,9 +63,9 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto"
+      className="bg-white p-6 rounded-lg shadow-md mx-auto"
     >
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+      <h2 className="text-[42px] font-bold mb-6 text-gray-800">
         {isViewOnly
           ? 'View Portfolio'
           : portfolio
@@ -135,11 +135,9 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
         <div className="md:col-span-4">
           {renderInput('description', 'Description', 'text', 'textarea')}
         </div>
-      </div>
-
-      {/* Buttons */}
+        {/* Buttons */}
       {!isViewOnly && (
-        <div className="flex justify-end space-x-4 mt-6">
+        <div className="flex justify-start space-x-4 mt-6">
           <button
             type="button"
             className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
@@ -155,6 +153,7 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
           </button>
         </div>
       )}
+      </div>
     </form>
   );
 };

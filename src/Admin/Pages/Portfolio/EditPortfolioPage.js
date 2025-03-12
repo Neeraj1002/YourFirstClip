@@ -41,7 +41,7 @@ const EditPortfolioPage = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="w-full">
 
       {/* Display form only if portfolio is loaded */}
       {portfolio && (
