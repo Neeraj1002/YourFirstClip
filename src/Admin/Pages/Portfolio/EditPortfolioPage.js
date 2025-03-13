@@ -20,7 +20,7 @@ const EditPortfolioPage = () => {
         setPortfolio(existingPortfolio);
       } else {
         notifyError('Portfolio not found');
-        navigate('/admin/portfolios');
+        navigate('/admin/admin-portfolios');
       }
     }
   }, [id, portfolios, loadPortfolios, navigate]);
@@ -29,7 +29,7 @@ const EditPortfolioPage = () => {
     try {
       await editPortfolio(id, portfolioData); // Use editPortfolio from context
       notifySuccess('Portfolio updated successfully');
-      navigate('/admin/portfolios'); // Redirect after successful save
+      navigate('/admin/admin-portfolios'); // Redirect after successful save
     } catch (error) {
       notifyError('Failed to update portfolio');
       console.error('Update portfolio error:', error);
@@ -37,7 +37,7 @@ const EditPortfolioPage = () => {
   };
 
   const handleCancel = () => {
-    navigate('/admin/portfolios'); // Redirect on cancel
+    navigate('/admin/admin-portfolios'); // Redirect on cancel
   };
 
   return (

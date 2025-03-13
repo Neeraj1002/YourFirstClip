@@ -10,12 +10,12 @@ const NewPortfolioPage = () => {
   // Save handler
   const handleSave = async (portfolioData) => {
     await addPortfolio(portfolioData); // Call addPortfolio from context
-    navigate('/admin/portfolios'); // Redirect after saving the portfolio
+    navigate('/admin/admin-portfolios'); // Redirect after saving the portfolio
   };
 
   // Cancel handler
   const handleCancel = () => {
-    navigate('/admin/portfolios'); // Redirect on cancel
+    navigate('/admin/admin-portfolios'); // Redirect on cancel
   };
 
   return (

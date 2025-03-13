@@ -15,7 +15,7 @@ const PortfolioListViewPage = () => {
   // Fetch portfolios when the component mounts
   useEffect(() => {
     loadPortfolios();
-  }, []);
+  }, [portfolios.length]);
 
   // View portfolio handler
   const handleView = (portfolio) => {

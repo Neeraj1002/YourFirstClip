@@ -20,13 +20,13 @@ const ViewPortfolioPage = () => {
         setPortfolio(existingPortfolio);
       } else {
         notifyError('Portfolio not found');
-        navigate('/admin/portfolios');
+        navigate('/admin/admin-portfolios');
       }
     }
   }, [id, portfolios, loadPortfolios, navigate]);
 
   const handleBack = () => {
-    navigate('/admin/portfolios'); // Navigate back to the portfolios list
+    navigate('/admin/admin-portfolios'); // Navigate back to the portfolios list
   };
 
   return (

@@ -31,7 +31,7 @@ const DesignagencyPage = lazy(() => import("./Pages/Home/DesignAgency"));
 
 
 const SingleProjectPage03 = lazy(() =>
-  import("./Pages/Portfolios/SingleProjectPage03")
+  import("./Pages/Portfolio/SingleProjectPage03")
 );
 
 
@@ -173,10 +173,10 @@ function App() {
                         <Route path="users/edit/:id" element={<EditUserPage />} />
 
                         {/* Portfolio Management */}
-                        <Route path="portfolios" element={<PortfolioListViewPage />} />
-                        <Route path="portfolios/view/:id" element={<ViewPortfolioPage />} />
-                        <Route path="portfolios/new" element={<NewPortfolioPage />} />
-                        <Route path="portfolios/edit/:id" element={<EditPortfolioPage />} />
+                        <Route path="admin-portfolios" element={<PortfolioListViewPage />} />
+                        <Route path="admin-portfolios/view/:id" element={<ViewPortfolioPage />} />
+                        <Route path="admin-portfolios/new" element={<NewPortfolioPage />} />
+                        <Route path="admin-portfolios/edit/:id" element={<EditPortfolioPage />} />
                       </Route>
                     </Route>
 

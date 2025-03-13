@@ -86,9 +86,10 @@ export const PortfolioProvider = ({ children }) => {
     }
   };
 
+  const token = localStorage.getItem('token');
   // Fetch portfolios on component mount
   useEffect(() => {
-    loadPortfolios();
+    token && loadPortfolios();
   }, []);
 
   return (
