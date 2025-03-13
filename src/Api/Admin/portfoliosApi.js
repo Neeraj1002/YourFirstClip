@@ -43,11 +43,25 @@ const handleApiError = (error) => {
 };
 
 // Fetch all portfolios
+// export const fetchPortfolios = async () => {
+//   try {
+//     const response = await api.get('/portfolios');
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(handleApiError(error));
+//   }
+// };
+
 export const fetchPortfolios = async () => {
   try {
-    const response = await api.get('/portfolios');
-    return response.data;
-  } catch (error) {
+    const response = await axios.get(`${API_URL}/portfolios`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+  });
+  return response.data;
+}
+  catch (error) {
     throw new Error(handleApiError(error));
   }
 };
