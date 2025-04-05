@@ -14,7 +14,7 @@ const validationSchema = Yup.object({
   isLive: Yup.boolean(),
 });
 
-const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
+const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly = false }) => {
   const formik = useFormik({
     initialValues: {
       title: portfolio?.title || '',
@@ -29,6 +29,7 @@ const PortfolioForm = ({ portfolio, onSave, onCancel, isViewOnly = false }) => {
       // Send full YouTube link as is to the backend
       onSave(values);
     },
+    
   });
   
   // Helper function to render inputs

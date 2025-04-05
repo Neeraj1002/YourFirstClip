@@ -49,6 +49,7 @@ export const PortfolioProvider = ({ children }) => {
       handleError(err);
     } finally {
       setLoading(false);
+      loadPortfolios()
     }
   };
 
@@ -67,6 +68,7 @@ export const PortfolioProvider = ({ children }) => {
       handleError(err);
     } finally {
       setLoading(false);
+      loadPortfolios()
     }
   };
 

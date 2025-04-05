@@ -7,14 +7,12 @@ import ToastMessage, { notifyError } from '../../Component/Common/ToastMessage';
 const ViewPortfolioPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { portfolios, loadPortfolios, loading, error } = usePortfolio();
+  const { portfolios, loading, error } = usePortfolio();
   const [portfolio, setPortfolio] = useState(null);
 
   useEffect(() => {
     // Fetch portfolios if not already loaded
-    if (!portfolios.length) {
-      loadPortfolios();
-    } else {
+    if (portfolios) {
       const existingPortfolio = portfolios.find((p) => p.id === parseInt(id));
       if (existingPortfolio) {
         setPortfolio(existingPortfolio);
@@ -23,7 +21,7 @@ const ViewPortfolioPage = () => {
         navigate('/admin/admin-portfolios');
       }
     }
-  }, [id, portfolios, loadPortfolios, navigate]);
+  }, [id, portfolios, navigate]);
 
   const handleBack = () => {
     navigate('/admin/admin-portfolios'); // Navigate back to the portfolios list

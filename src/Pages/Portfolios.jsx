@@ -14,20 +14,48 @@ import {
   SearchBar,
 } from "../Components/Header/Header";
 import FooterStyle01 from "../Components/Footers/FooterStyle01";
-const SideButtons = lazy(() => import("../Components/SideButtons"))
 
 const PortfolioPage = (props) => {
   return (
     <div style={props.style}>
       {/* Header Start */}
       <Header topSpace={{ md: true }} type="reverse-scroll">
-        <HeaderNav theme="light" expand="lg" className="px-[35px] py-[0px] lg:px-0" containerClass="sm:px-0">
+        <HeaderNav
+          theme="light"
+          expand="lg"
+          className="px-[35px] py-[0px] lg:px-0"
+          containerClass="sm:px-0"
+        >
           <Col className="col-auto col-sm-6 col-lg-2 me-auto ps-lg-0">
             <Link aria-label="header logo" className="flex items-center" to="/">
               <Navbar.Brand className="inline-block p-0 m-0">
-                <img className="default-logo" width="111" height="36" loading="lazy" src='/assets/img/webp/logo-fast-blue-black.webp' data-rjs='/assets/img/webp/logo-fast-blue-black@2x.webp' alt='logo' />
-                <img className="alt-logo" width="111" height="36" loading="lazy" src='/assets/img/webp/logo-fast-blue-black.webp' data-rjs='/assets/img/webp/logo-fast-blue-black@2x.webp' alt='logo' />
-                <img className="mobile-logo" width="111" height="36" loading="lazy" src='/assets/img/webp/logo-fast-blue-black.webp' data-rjs='/assets/img/webp/logo-fast-blue-black@2x.webp' alt='logo' />
+                <img
+                  className="default-logo"
+                  width="111"
+                  height="36"
+                  loading="lazy"
+                  src="/assets/img/webp/logo-fast-blue-black.webp"
+                  data-rjs="/assets/img/webp/logo-fast-blue-black@2x.webp"
+                  alt="logo"
+                />
+                <img
+                  className="alt-logo"
+                  width="111"
+                  height="36"
+                  loading="lazy"
+                  src="/assets/img/webp/logo-fast-blue-black.webp"
+                  data-rjs="/assets/img/webp/logo-fast-blue-black@2x.webp"
+                  alt="logo"
+                />
+                <img
+                  className="mobile-logo"
+                  width="111"
+                  height="36"
+                  loading="lazy"
+                  src="/assets/img/webp/logo-fast-blue-black.webp"
+                  data-rjs="/assets/img/webp/logo-fast-blue-black@2x.webp"
+                  alt="logo"
+                />
               </Navbar.Brand>
             </Link>
           </Col>
@@ -50,7 +78,6 @@ const PortfolioPage = (props) => {
         </HeaderNav>
       </Header>
       {/* Header End */}
-      <SideButtons />
       <Outlet />
 
       {/* Section Start */}

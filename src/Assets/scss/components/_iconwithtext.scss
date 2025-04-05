@@ -8,7 +8,7 @@
     }
   }
 
-  >div {
+  > div {
     display: flex;
   }
 
@@ -19,7 +19,7 @@
   p {
     width: 80%;
 
-    @media (max-width:var(--lg)) {
+    @media (max-width: var(--lg)) {
       width: 100%;
     }
 
@@ -31,18 +31,18 @@
 .icon-with-text-02 {
   display: flex;
 
-  >div {
+  > div {
     background-color: white;
     display: flex;
     padding: 56px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     transition: var(--default-transition);
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       padding: 30px;
     }
 
-    @media (max-width:var(--xs)) {
+    @media (max-width: var(--xs)) {
       padding: 44px;
     }
 
@@ -75,15 +75,15 @@
 
 //Icon With Text Style 03
 .icon-with-text-03 {
-  >div {
+  > div {
     padding: 1.5rem;
 
-    @media (max-width:var(--sm)) {
+    @media (max-width: var(--sm)) {
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
 
-    @media (max-width:var(--xs)) {
+    @media (max-width: var(--xs)) {
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
@@ -93,14 +93,13 @@
     display: inline-block;
     margin-bottom: 15px;
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       margin-bottom: 15px;
     }
 
-    @media (max-width:var(--sm)) {
+    @media (max-width: var(--sm)) {
       margin-bottom: 10px;
     }
-
   }
 
   .feature-box-content {
@@ -114,7 +113,7 @@
 
 //Icon With Text Style 04
 .icon-with-text-04 {
-  >div {
+  > div {
     padding: 3rem;
     align-items: center;
     display: flex;
@@ -122,14 +121,14 @@
     transition: var(--default-transition);
     background-color: white;
 
-    @media (max-width:var(--lg)) {
+    @media (max-width: var(--lg)) {
       padding-top: 2.5rem;
       padding-bottom: 2.5rem;
       padding-left: 2rem;
       padding-right: 2rem;
     }
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       padding-top: 4rem;
       padding-bottom: 4rem;
     }
@@ -155,7 +154,7 @@
       margin-bottom: 5px;
       color: #232323;
 
-      @media (max-width:var(--md)) {
+      @media (max-width: var(--md)) {
         font-size: 16px;
       }
     }
@@ -168,13 +167,13 @@
 
 //Icon With Text Style 05
 .icon-with-text-05 {
-  >div {
+  > div {
     text-align: center;
     transition: var(--default-transition);
 
     &:hover {
       i {
-        color: var(--base-color, #0038e3);
+        color: var(--base-color, #ffd100);
         transition: var(--default-transition);
       }
     }
@@ -198,7 +197,7 @@
 
 //Icon With Text Style 06
 .icon-with-text-06 {
-  >div {
+  > div {
     border: 1px solid #e4e4e4;
     padding: 3rem;
     border-radius: 6px;
@@ -208,7 +207,7 @@
     transition-duration: 0.4s;
 
     .feature-box-content {
-      >span {
+      > span {
         margin-bottom: 10px;
         display: block;
       }
@@ -245,7 +244,7 @@
       .feature-box-content {
         transform: translateY(-10px);
 
-        >span {
+        > span {
           margin-bottom: 10px;
           display: block;
         }
@@ -283,7 +282,7 @@
 
 //Icon With Text Style 07
 .icon-with-text-07 {
-  >div {
+  > div {
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -291,17 +290,17 @@
     padding-left: 3rem;
     padding-right: 3rem;
 
-    @media (max-width:var(--lg)) {
+    @media (max-width: var(--lg)) {
       padding-left: 2rem;
       padding-right: 2rem;
     }
 
-    @media (max-width:var(--sm)) {
+    @media (max-width: var(--sm)) {
       padding-left: 1rem;
       padding-right: 1rem;
     }
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       margin-bottom: 50px;
     }
 
@@ -340,11 +339,11 @@
     transition: var(--default-transition);
     background-color: #fff;
 
-    @media (max-width:var(--sm)) {
+    @media (max-width: var(--sm)) {
       margin-bottom: 30px;
     }
 
-    @media (max-width:var(--xs)) {
+    @media (max-width: var(--xs)) {
       margin-bottom: 30px;
     }
 
@@ -389,7 +388,7 @@
 }
 
 .icon-with-text-08 {
-  >div {
+  > div {
     align-items: center;
     display: flex;
   }
@@ -431,7 +430,7 @@
 
 //Icon With Text Style 09
 .icon-with-text-09 {
-  >div {
+  > div {
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -451,14 +450,13 @@
     line-height: 26px;
     width: 70%;
 
-    @media (max-width:var(--lg)) {
+    @media (max-width: var(--lg)) {
       width: 80%;
     }
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       width: 75%;
     }
-
 
     .title {
       color: #374162;
@@ -475,7 +473,7 @@
 
 //Icon With Text Style 10
 .icon-with-text-10 {
-  >div {
+  > div {
     transition: var(--default-transition);
     position: relative;
     text-align: center;
@@ -485,7 +483,7 @@
     justify-content: center;
     display: flex;
 
-    @media (max-width:var(--lg)) {
+    @media (max-width: var(--lg)) {
       padding: 3rem;
     }
 
@@ -515,11 +513,11 @@
     font-size: 40px;
     display: inline-block;
 
-    @media (max-width:var(--md)) {
+    @media (max-width: var(--md)) {
       margin-bottom: 15px;
     }
 
-    @media (max-width:var(--sm)) {
+    @media (max-width: var(--sm)) {
       margin-bottom: 10px;
     }
   }
@@ -527,7 +525,7 @@
 
 //Icon With Text Style 11
 .icon-with-text-11 {
-  >div {
+  > div {
     transition: var(--default-transition);
     padding: 4rem;
     position: relative;

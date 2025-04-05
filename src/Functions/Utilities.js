@@ -48,10 +48,25 @@ export const initializeIsotop = (item) => {
     },
   });
 
+  // 1. Initial arrange after 1s (can help if you want to wait for animations)
   setTimeout(() => {
     grid.arrange({ filter: `*` });
+    grid.layout(); // ensure it lays out
   }, 1000);
 
+  // 2. Force another layout when all images inside this grid are loaded
+  const imgLoadPromises = Array.from(item.querySelectorAll("img")).map((img) => {
+    if (img.complete) return Promise.resolve();
+    return new Promise((resolve) => {
+      img.onload = img.onerror = resolve;
+    });
+  });
+
+  Promise.all(imgLoadPromises).then(() => {
+    grid.layout(); // RELAYOUT once images are 100% loaded
+  });
+
+  // 3. Filtering
   filter_menu &&
     filter_menu.querySelectorAll("li").forEach((el) => {
       el.querySelector("span").addEventListener("click", function (e) {
@@ -126,9 +141,8 @@ export const SetHeaderMenuPos = () => {
         menuLeftPos = item.getBoundingClientRect().left;
 
       if (menuLeftPos + menuWidth >= window.screen.width) {
-        item.style.left = `-${
-          menuLeftPos + menuWidth - window.innerWidth + 25
-        }px`;
+        item.style.left = `-${menuLeftPos + menuWidth - window.innerWidth + 25
+          }px`;
       }
     });
   }
