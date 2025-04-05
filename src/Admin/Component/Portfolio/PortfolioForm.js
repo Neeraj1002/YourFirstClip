@@ -19,9 +19,9 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
     initialValues: {
       title: portfolio?.title || '',
       description: portfolio?.description || '',
-      youtubeLink: portfolio?.videoId 
-      ? `https://www.youtube.com/watch?v=${portfolio.videoId}` 
-      : '',      type: portfolio?.type || 'TVC',
+      youtubeLink: portfolio?.videoId
+        ? `https://www.youtube.com/watch?v=${portfolio.videoId}`
+        : '', type: portfolio?.type || 'TVC',
       isLive: portfolio?.isLive || false,
     },
     validationSchema,
@@ -29,9 +29,9 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
       // Send full YouTube link as is to the backend
       onSave(values);
     },
-    
+
   });
-  
+
   // Helper function to render inputs
   const renderInput = (name, label, type = 'text', as = 'input') => (
     <div className="mb-4">
@@ -46,13 +46,11 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
         onBlur: formik.handleBlur,
         value: formik.values[name],
         disabled: isViewOnly,
-        className: `w-full p-2 border ${
-          formik.touched[name] && formik.errors[name]
-            ? 'border-red-500'
-            : 'border-gray-300'
-        } rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-          isViewOnly ? 'bg-gray-100 cursor-not-allowed' : ''
-        }`,
+        className: `w-full p-2 border ${formik.touched[name] && formik.errors[name]
+          ? 'border-red-500'
+          : 'border-gray-300'
+          } rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${isViewOnly ? 'bg-gray-100 cursor-not-allowed' : ''
+          }`,
         rows: as === 'textarea' ? 4 : undefined,
       })}
       {formik.touched[name] && formik.errors[name] && (
@@ -70,8 +68,8 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
         {isViewOnly
           ? 'View Portfolio'
           : portfolio
-          ? 'Edit Portfolio'
-          : 'Add New Portfolio'}
+            ? 'Edit Portfolio'
+            : 'Add New Portfolio'}
       </h2>
 
       {/* Grid Layout */}
@@ -90,26 +88,25 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
             onBlur={formik.handleBlur}
             value={formik.values.type}
             disabled={isViewOnly}
-            className={`w-full p-2 border ${
-              formik.touched.type && formik.errors.type
-                ? 'border-red-500'
-                : 'border-gray-300'
-            } rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-              isViewOnly ? 'bg-gray-100 cursor-not-allowed' : ''
-            }`}
+            className={`w-full p-2 border ${formik.touched.type && formik.errors.type
+              ? 'border-red-500'
+              : 'border-gray-300'
+              } rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${isViewOnly ? 'bg-gray-100 cursor-not-allowed' : ''
+              }`}
           >
-            <option value="REELS">Reels</option>
+            <option value="REEL">Reel</option>
             <option value="TVC">TVC</option>
-            <option value="SOCIAL_MEDIA_ADS">Social Media Ads</option>
-            <option value="SHORT_FILMS">Short Films</option>
+            <option value="SOCIAL_MEDIA_AD">Social Media Ad</option>
+            <option value="SHORT_FILM">Short Film</option>
             <option value="DOCUMENTARY">Documentary</option>
             <option value="MUSIC_VIDEO">Music Video</option>
-            <option value="CORPORATE_FILMS">Corporate Films</option>
-            <option value="VLOGS">Vlogs</option>
+            <option value="CORPORATE_FILM">Corporate Film</option>
+            <option value="VLOG">Vlog</option>
             <option value="PODCAST">Podcast</option>
             <option value="BRANDED_CONTENT">Branded Content</option>
             <option value="TRAINING_VIDEO">Training Video</option>
             <option value="YOUTUBE_INFLUENCERS_EDIT">YouTube Influencers Edit</option>
+
           </select>
           {formik.touched.type && formik.errors.type && (
             <div className="text-red-500 text-sm mt-1">{formik.errors.type}</div>
@@ -124,9 +121,8 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
             onBlur={formik.handleBlur}
             checked={formik.values.isLive}
             disabled={isViewOnly}
-            className={`mr-2 focus:ring-blue-500 ${
-              isViewOnly ? 'cursor-not-allowed' : ''
-            }`}
+            className={`mr-2 focus:ring-blue-500 ${isViewOnly ? 'cursor-not-allowed' : ''
+              }`}
           />
           <label htmlFor="isLive" className="text-gray-700 font-semibold">
             Live
@@ -137,23 +133,23 @@ const PortfolioForm = ({ portfolio, onSave, loadPortfolios, onCancel, isViewOnly
           {renderInput('description', 'Description', 'text', 'textarea')}
         </div>
         {/* Buttons */}
-      {!isViewOnly && (
-        <div className="flex justify-start space-x-4 mt-6">
-          <button
-            type="button"
-            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            onClick={onCancel}
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Save
-          </button>
-        </div>
-      )}
+        {!isViewOnly && (
+          <div className="flex justify-start space-x-4 mt-6">
+            <button
+              type="button"
+              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Save
+            </button>
+          </div>
+        )}
       </div>
     </form>
   );
