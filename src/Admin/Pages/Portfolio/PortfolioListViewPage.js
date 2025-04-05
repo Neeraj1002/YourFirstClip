@@ -6,16 +6,11 @@ import ToastMessage, { notifySuccess, notifyError } from '../../Component/Common
 
 const PortfolioListViewPage = () => {
   const navigate = useNavigate();
-  const { portfolios, loadPortfolios, removePortfolio } = usePortfolio(); // Access portfolios and context functions
+  const { portfolios, removePortfolio } = usePortfolio(); // Access portfolios and context functions
   const pageTitle = 'Portfolio'
   // Define columns including an "Actions" column for buttons
   const columns = ['Title', 'Description', 'Type', 'YouTube Link', 'Live', 'Creator Name', 'Actions'];
 
-
-  // Fetch portfolios when the component mounts
-  useEffect(() => {
-    loadPortfolios();
-  }, []);
 
   // View portfolio handler
   const handleView = (portfolio) => {

@@ -16,13 +16,13 @@ import SignupPage from "./Admin/Pages/Auth/SignupPage";
 import PrivateRoute from './Admin/Routes/PrivateRoute';
 import Layout from './Admin/Component/Layout/Layout';
 import DashboardPage from './Admin/Pages/Dashboard/DashboardPage';
-import PortfolioListViewPage from './Admin/Pages/Portfolio/PortfolioListViewPage'; 
+import PortfolioListViewPage from './Admin/Pages/Portfolio/PortfolioListViewPage';
 import EditPortfolioPage from './Admin/Pages/Portfolio/EditPortfolioPage';
 import NewPortfolioPage from './Admin/Pages/Portfolio/NewPortfolioPage';
 import ViewPortfolioPage from './Admin/Pages/Portfolio/ViewPortfolioPage';
 import UserPage from './Admin/Pages/Users/UserPage';
 import NewUserPage from './Admin/Pages/Users/NewUserPage';
-import EditUserPage from './Admin/Pages/Users/EditUserPage'; 
+import EditUserPage from './Admin/Pages/Users/EditUserPage';
 
 // Home
 const DesignagencyPage = lazy(() => import("./Pages/Home/DesignAgency"));
@@ -31,7 +31,7 @@ const DesignagencyPage = lazy(() => import("./Pages/Home/DesignAgency"));
 
 
 const SingleProjectPage03 = lazy(() =>
-  import("./Pages/Portfolios/SingleProjectPage03")
+  import("./Pages/Portfolio/SingleProjectPage03")
 );
 
 
@@ -41,25 +41,12 @@ const FooterStyle01Page = lazy(() =>
 );
 
 
-// Model-Popup
-const ModalPopupPage = lazy(() => import("./Pages/ModalPopup"));
-const SimpleModel = lazy(() => import("./Pages/ModelPopup/SimpleModel"));
-const GalleryBackgroundPage = lazy(() =>
-  import("./Pages/PageTitle/GalleryBackgroundPage")
-);
-const BackgroundVideoPage = lazy(() =>
-  import("./Pages/PageTitle/BackgroundVideoPage")
-);
-const MiniVersionPage = lazy(() => import("./Pages/PageTitle/MiniVersionPage"));
 
 const PageTitle = lazy(() => import("./Pages/PageTitle"));
 
 // About Pages
 
-const AboutUsPage = lazy(() => import("./Pages/About/AboutUsPage"));
-
 // Services Pages
-const WhatWeOfferPage = lazy(() => import("./Pages/Services/WhatWeOfferPage"));
 
 // Contact Pages
 const ContactUsModernPage = lazy(() =>
@@ -134,7 +121,6 @@ function App() {
       isOpen: false,
     });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
@@ -173,10 +159,10 @@ function App() {
                         <Route path="users/edit/:id" element={<EditUserPage />} />
 
                         {/* Portfolio Management */}
-                        <Route path="portfolios" element={<PortfolioListViewPage />} />
-                        <Route path="portfolios/view/:id" element={<ViewPortfolioPage />} />
-                        <Route path="portfolios/new" element={<NewPortfolioPage />} />
-                        <Route path="portfolios/edit/:id" element={<EditPortfolioPage />} />
+                        <Route path="admin-portfolios" element={<PortfolioListViewPage />} />
+                        <Route path="admin-portfolios/view/:id" element={<ViewPortfolioPage />} />
+                        <Route path="admin-portfolios/new" element={<NewPortfolioPage />} />
+                        <Route path="admin-portfolios/edit/:id" element={<EditPortfolioPage />} />
                       </Route>
                     </Route>
 
@@ -198,7 +184,7 @@ function App() {
 
                     {/* Portfolios */}
                     <Route
-                      path="portfolio"
+                      path="portfolios"
                       element={
                         <SingleProjectPage03 style={{ "--base-color": "#0038e3" }} />
                       }
@@ -213,39 +199,13 @@ function App() {
                     </Route>
 
                     {/* Model-Popup */}
-                    <Route path="model-popup" element={<ModalPopupPage />}>
-                      <Route path="simple-modal" element={<SimpleModel />} />
-                    </Route>
 
-                    {/* Page-Title */}
-                    <Route path="page-title" element={<PageTitle />}>
-                      <Route
-                        path="gallery-background"
-                        element={<GalleryBackgroundPage />}
-                      />
-                      <Route
-                        path="background-video"
-                        element={<BackgroundVideoPage />}
-                      />{" "}
-                      <Route path="mini-version" element={<MiniVersionPage />} />
-                    </Route>
 
                     {/*About Pages */}
 
-                    <Route
-                      path="/page/about-us"
-                      element={
-                        <AboutUsPage style={{ "--base-color": "#0038e3" }} />
-                      }
-                    />
 
-                    {/* Services Pages */}
-                    <Route
-                      path="/page/services"
-                      element={
-                        <WhatWeOfferPage style={{ "--base-color": "#0038e3" }} />
-                      }
-                    />
+
+
 
                     {/* Contact Pages */}
                     <Route

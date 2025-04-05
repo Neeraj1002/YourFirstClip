@@ -9,8 +9,6 @@ import { Parallax } from "react-scroll-parallax";
 // Components
 import {
   Header,
-  HeaderCart,
-  HeaderLanguage,
   HeaderNav,
   Menu,
   SearchBar,
@@ -78,11 +76,6 @@ const SingleProjectPage03 = (props) => {
           </Navbar.Collapse>
           <Col className="col-auto text-right pe-0">
             <SearchBar className="pr-0 xs:pl-[15px]" />
-            <HeaderLanguage className="xs:pl-[15px]" />
-            <HeaderCart
-              className="xs:pl-[15px]"
-              style={{ "--base-color": "#0038e3" }}
-            />
           </Col>
         </HeaderNav>
       </Header>

@@ -10,8 +10,7 @@ import { Accordion, Container, Navbar } from "react-bootstrap";
 import useOnClickOutside from "../../Functions/UseOnClickOutside";
 
 // Component
-import { Input } from '../Form/Form'
-import Buttons from '../Button/Buttons';
+import { Input } from "../Form/Form";
 import ReactCustomScrollbar from "../ReactCustomScrollbar";
 
 // Context
@@ -21,7 +20,7 @@ import GlobalContext from "../../Context/Context";
 import HeaderData from "./HeaderData";
 
 // css
-import "../../Assets/scss/layouts/_header.scss"
+import "../../Assets/scss/layouts/_header.scss";
 
 /* Header Component Start */
 export const Header = memo((props) => {
@@ -33,7 +32,7 @@ export const Header = memo((props) => {
     prevY: -1,
     directionDown: true,
   });
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     let headerEl = document.querySelector("header");
@@ -41,7 +40,10 @@ export const Header = memo((props) => {
     // Calculate header height
     function setTopSpace() {
       let windowWidth = window.innerWidth,
-        headerheight = (props.topSpace.desktop && props.topSpace.desktop === true) ? headerEl.offsetHeight : 0;
+        headerheight =
+          props.topSpace.desktop && props.topSpace.desktop === true
+            ? headerEl.offsetHeight
+            : 0;
 
       if (windowWidth <= 1199 && props.topSpace.lg) {
         headerheight = props.topSpace.lg === true ? headerEl.offsetHeight : 0;
@@ -68,9 +70,9 @@ export const Header = memo((props) => {
     window.addEventListener("resize", setTopSpace);
 
     if (document.body.classList.contains("mobile-menu")) {
-      document.body.classList.remove("navbar-collapse-show")
-      document.body.classList.remove("menu-modern")
-      document.body.classList.remove("menu-full")
+      document.body.classList.remove("navbar-collapse-show");
+      document.body.classList.remove("menu-modern");
+      document.body.classList.remove("menu-full");
       document.body.style.removeProperty("overflow");
     }
 
@@ -103,12 +105,15 @@ export const Header = memo((props) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <header
-      className={`${props.className ? props.className : ""}${scrollPos.y > 5 ? " sticky-header" : ""}${scrollPos.directionDown === false ? " header-appear" : ""}${props.type ? ` ${props.type}` : ""
-        }`}
+      className={`${props.className ? props.className : ""}${
+        scrollPos.y > 5 ? " sticky-header" : ""
+      }${scrollPos.directionDown === false ? " header-appear" : ""}${
+        props.type ? ` ${props.type}` : ""
+      }`}
     >
       {props.children}
     </header>
@@ -145,8 +150,9 @@ export const HeaderNav = (props) => {
       expand={props.expand}
       bg={props.bg ? props.bg : "transparent"}
       variant={props.theme}
-      className={`${props.menu && `menu-${props.menu}`}${props.className ? ` ${props.className}` : ""
-        }${props.bg || props.bg === "transparent" ? "" : " header-transparent"}`}
+      className={`${props.menu && `menu-${props.menu}`}${
+        props.className ? ` ${props.className}` : ""
+      }${props.bg || props.bg === "transparent" ? "" : " header-transparent"}`}
       onToggle={handleMenuToggle}
     >
       <Container
@@ -182,90 +188,119 @@ export const Topbar = ({ className, ...props }) => {
 export const Menu = memo((props) => {
   const megamenu_ref = useRef(null);
   const [isMenuActive, setMenuActive] = useState(null);
-  const [isHover, setIsHover] = useState(false)
-  const handleMenuClick = (e, index) => setMenuActive(index !== isMenuActive ? index : null);
+  const [isHover, setIsHover] = useState(false);
+  const handleMenuClick = (e, index) =>
+    setMenuActive(index !== isMenuActive ? index : null);
 
   // set Active Menu
-  const location = useLocation()
+  const location = useLocation();
 
   useEffect(() => {
     let header = document.querySelector("header"),
-    navItem = header.querySelectorAll(".nav-item"),
+      navItem = header.querySelectorAll(".nav-item"),
       links = header.querySelectorAll(".nav-link");
 
-    navItem.forEach(item => item.classList.remove("active"))
+    navItem.forEach((item) => item.classList.remove("active"));
 
-    const activeLink = Array.from(links).find(link => link.getAttribute("href") === location.pathname)
+    const activeLink = Array.from(links).find(
+      (link) => link.getAttribute("href") === location.pathname
+    );
     if (activeLink) {
-      import("../../Functions/Utilities").then(module => {
-        let filtered_dropdown = module.getParents(activeLink).filter(item => item.classList.contains('simple-dropdown'))
-        let filtered_nav_item = module.getParents(activeLink).filter(item => item.classList.contains('nav-item'))
-        filtered_dropdown.forEach(item => item.classList.add("active"))
-        filtered_nav_item.forEach(item => item.classList.add("active"))
-      })
+      import("../../Functions/Utilities").then((module) => {
+        let filtered_dropdown = module
+          .getParents(activeLink)
+          .filter((item) => item.classList.contains("simple-dropdown"));
+        let filtered_nav_item = module
+          .getParents(activeLink)
+          .filter((item) => item.classList.contains("nav-item"));
+        filtered_dropdown.forEach((item) => item.classList.add("active"));
+        filtered_nav_item.forEach((item) => item.classList.add("active"));
+      });
     }
-  }, [location, isHover])
+  }, [location, isHover]);
 
   useEffect(() => {
-    let navItems = document.querySelector("header").querySelectorAll(".navbar-nav > .nav-item")
-    navItems.forEach(nav => nav.addEventListener("mouseover", () => setIsHover(true)))
-  }, [])
+    let navItems = document
+      .querySelector("header")
+      .querySelectorAll(".navbar-nav > .nav-item");
+    navItems.forEach((nav) =>
+      nav.addEventListener("mouseover", () => setIsHover(true))
+    );
+  }, []);
 
   return (
-    <div className={`${props.mobileMenu ? `mobile-menu-${props.mobileMenu}` : ""}${props.className ? ` ${props.className}` : ""}`}>
+    <div
+      className={`${props.mobileMenu ? `mobile-menu-${props.mobileMenu}` : ""}${
+        props.className ? ` ${props.className}` : ""
+      }`}
+    >
       <ul className="navbar-nav">
         {props.data.map((item, i) => {
           return (
-            <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""}`} key={i}>
-              {
-                item.link ? (
-                  <Link className="nav-link" to={item.link}>
-                    {item.title}
-                  </Link>
-                ) : (
-                  <span className="nav-link">{item.title}</span>
-                )
-              }
-              <i className="fa fa-angle-down" onClick={(e) => handleMenuClick(e, i)} />
-              {(item.dropdown) && (
+            <li
+              className={`nav-item${
+                item.dropdown || item.megamenu ? ` dropdown` : ""
+              }${isMenuActive === i ? " open" : ""}`}
+              key={i}
+            >
+              {item.link ? (
+                <Link className="nav-link" to={item.link}>
+                  {item.title}
+                </Link>
+              ) : (
+                <span className="nav-link">{item.title}</span>
+              )}
+              <i
+                className="fa fa-angle-down"
+                onClick={(e) => handleMenuClick(e, i)}
+              />
+              {item.dropdown && (
                 <ul className="simple-dropdown-menu">
                   {item.dropdown.map((item, i) => {
                     return (
                       <li key={i} className="simple-dropdown">
-                        {
-                          item.link ? (
-                            <Link className="nav-link" to={item.link}>
-                              {item.title}
-                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                            </Link>
-                          ) : (
-                            <span className="nav-link">
-                              {item.title}
-                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                            </span>
-                          )
-                        }
+                        {item.link ? (
+                          <Link className="nav-link" to={item.link}>
+                            {item.title}
+                            {item.dropdown && (
+                              <i className="fas fa-angle-right"></i>
+                            )}
+                          </Link>
+                        ) : (
+                          <span className="nav-link">
+                            {item.title}
+                            {item.dropdown && (
+                              <i className="fas fa-angle-right"></i>
+                            )}
+                          </span>
+                        )}
                         {item.dropdown && (
                           <ul className="simple-dropdown-menu">
                             {item.dropdown.map((item, i) => {
                               return (
                                 <li key={i} className="simple-dropdown">
-                                  {
-                                    item.link ? (
-                                      <Link
-                                        className={`nav-link${item.dropdown ? " md:text-black md:mt-[15px] md:mb-[7px]" : ""}`}
-                                        to={item.link}
-                                      >
-                                        {item.title}
-                                        {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                      </Link>
-                                    ) : (
-                                      <span className="nav-link">
-                                        {item.title}
-                                        {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                      </span>
-                                    )
-                                  }
+                                  {item.link ? (
+                                    <Link
+                                      className={`nav-link${
+                                        item.dropdown
+                                          ? " md:text-black md:mt-[15px] md:mb-[7px]"
+                                          : ""
+                                      }`}
+                                      to={item.link}
+                                    >
+                                      {item.title}
+                                      {item.dropdown && (
+                                        <i className="fas fa-angle-right"></i>
+                                      )}
+                                    </Link>
+                                  ) : (
+                                    <span className="nav-link">
+                                      {item.title}
+                                      {item.dropdown && (
+                                        <i className="fas fa-angle-right"></i>
+                                      )}
+                                    </span>
+                                  )}
                                   {item.dropdown && (
                                     <ul className="simple-dropdown-menu">
                                       {item.dropdown.map((item, i) => {
@@ -274,7 +309,12 @@ export const Menu = memo((props) => {
                                             className="simple-dropdown"
                                             key={i}
                                           >
-                                            <Link className="nav-link" to={item.link}>{item.title}</Link>
+                                            <Link
+                                              className="nav-link"
+                                              to={item.link}
+                                            >
+                                              {item.title}
+                                            </Link>
                                           </li>
                                         );
                                       })}
@@ -290,22 +330,52 @@ export const Menu = memo((props) => {
                   })}
                 </ul>
               )}
-              {(item.megamenu) && (
+              {item.megamenu && (
                 <div className="flex megamenu" ref={megamenu_ref}>
                   {item.megamenu.map((item, i) => {
                     return (
-                      <ul className={`${(item.dropdown.filter(item => item.img).length > 0) ? "!pr-[30px] img-wrapper inline-block last:!pr-[0px]" : "inline-block"}`} key={i}>
-                        {item.title && <li className="title text-md font-medium mb-[15px] whitespace-nowrap">
-                          {item.title}
-                        </li>}
+                      <ul
+                        className={`${
+                          item.dropdown.filter((item) => item.img).length > 0
+                            ? "!pr-[30px] img-wrapper inline-block last:!pr-[0px]"
+                            : "inline-block"
+                        }`}
+                        key={i}
+                      >
+                        {item.title && (
+                          <li className="title text-md font-medium mb-[15px] whitespace-nowrap">
+                            {item.title}
+                          </li>
+                        )}
                         {item.dropdown &&
                           item.dropdown.map((item, i) => {
                             return (
                               <li className="nav-item" key={i}>
-                                {item.title && <Link className="nav-link" to={item.link ? item.link : "#"} > {item.icon && (<i className={`${item.icon} mr-[10px]`} ></i>)}{" "}
-                                  {item.title}
-                                </Link>}
-                                {(item.img && item.link) && <Link to={item.link}><img height="235" alt="menu-banner" width="210" className="inline-block max-w-[210px]" src={item.img} /></Link>}
+                                {item.title && (
+                                  <Link
+                                    className="nav-link"
+                                    to={item.link ? item.link : "#"}
+                                  >
+                                    {" "}
+                                    {item.icon && (
+                                      <i
+                                        className={`${item.icon} mr-[10px]`}
+                                      ></i>
+                                    )}{" "}
+                                    {item.title}
+                                  </Link>
+                                )}
+                                {item.img && item.link && (
+                                  <Link to={item.link}>
+                                    <img
+                                      height="235"
+                                      alt="menu-banner"
+                                      width="210"
+                                      className="inline-block max-w-[210px]"
+                                      src={item.img}
+                                    />
+                                  </Link>
+                                )}
                               </li>
                             );
                           })}
@@ -328,44 +398,59 @@ export const MobileMenu = (props) => {
   const megamenu_ref = useRef(null);
   const [isMenuActive, setMenuActive] = useState(null);
   const [toggle, setToggle] = useState(false);
-  const handleMenuClick = (e, index) => setMenuActive(index !== isMenuActive ? index : null);
+  const handleMenuClick = (e, index) =>
+    setMenuActive(index !== isMenuActive ? index : null);
 
   // set Active Menu
-  const location = useLocation()
+  const location = useLocation();
   useEffect(() => {
     let header = document.querySelector("header"),
       links = header.querySelectorAll(".nav-link");
 
     function getParents(elem) {
       var parents = [];
-      while (elem.parentNode && elem.parentNode.nodeName.toLowerCase() !== 'body') {
+      while (
+        elem.parentNode &&
+        elem.parentNode.nodeName.toLowerCase() !== "body"
+      ) {
         elem = elem.parentNode;
         parents.push(elem);
       }
       return parents;
     }
 
-    links.forEach(item => {
+    links.forEach((item) => {
       let attr = item.getAttribute("href");
       item.classList.remove("active");
       if (attr === location.pathname) {
         if (item.closest(".simple-dropdown")) {
-          item.closest(".simple-dropdown").querySelectorAll(".nav-link").forEach(item => item.classList.remove("active"));
+          item
+            .closest(".simple-dropdown")
+            .querySelectorAll(".nav-link")
+            .forEach((item) => item.classList.remove("active"));
         }
         item.classList.add("active");
 
-        let filtered_dropdown = getParents(item).filter(item => item.classList.contains('simple-dropdown'))
-        let filtered_nav_item = getParents(item).filter(item => item.classList.contains('nav-item'))
-        filtered_dropdown.forEach(item => item.classList.add("active"))
-        filtered_nav_item.forEach(item => item.classList.add("active"))
+        let filtered_dropdown = getParents(item).filter((item) =>
+          item.classList.contains("simple-dropdown")
+        );
+        let filtered_nav_item = getParents(item).filter((item) =>
+          item.classList.contains("nav-item")
+        );
+        filtered_dropdown.forEach((item) => item.classList.add("active"));
+        filtered_nav_item.forEach((item) => item.classList.add("active"));
       }
-    })
-  }, [location])
+    });
+  }, [location]);
 
   useEffect(() => {
-    document.body.classList.add("mobile-menu")
+    document.body.classList.add("mobile-menu");
     const close = (e) => {
-      if (e.keyCode === 27 && (document.body.classList.contains("menu-modern") || document.body.classList.contains("menu-full"))) {
+      if (
+        e.keyCode === 27 &&
+        (document.body.classList.contains("menu-modern") ||
+          document.body.classList.contains("menu-full"))
+      ) {
         document.querySelector("#close-btn").click();
       }
     };
@@ -374,38 +459,47 @@ export const MobileMenu = (props) => {
     return () => window.removeEventListener("keydown", close);
   }, []);
 
-  useEffect(() => {
-    const breakpoint = window.matchMedia("(max-width: 991px)");
-    function breakpointCheck(x) {
-      if (x.matches) {
-        if (toggle === true) {
-          document.body.style.overflow = "hidden"
-          document.body.classList.add(`menu-${props.type}`);
+  useEffect(
+    () => {
+      const breakpoint = window.matchMedia("(max-width: 991px)");
+      function breakpointCheck(x) {
+        if (x.matches) {
+          if (toggle === true) {
+            document.body.style.overflow = "hidden";
+            document.body.classList.add(`menu-${props.type}`);
+          } else {
+            document.body.style.removeProperty("overflow");
+            document.body.classList.remove(`menu-${props.type}`);
+          }
         } else {
           document.body.style.removeProperty("overflow");
           document.body.classList.remove(`menu-${props.type}`);
         }
-      } else {
-        document.body.style.removeProperty("overflow");
-        document.body.classList.remove(`menu-${props.type}`);
       }
-    }
 
-    breakpointCheck(breakpoint);
-    breakpoint.addListener(breakpointCheck);
-  },
+      breakpointCheck(breakpoint);
+      breakpoint.addListener(breakpointCheck);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [toggle])
+    [toggle]
+  );
 
   return (
     <div className={props.className ? ` ${props.className}` : ""}>
-      <Navbar.Toggle id="toggle-bar" className="order-last md:px-[25px] sm:ml-0" onClick={() => setToggle(!toggle)}>
+      <Navbar.Toggle
+        id="toggle-bar"
+        className="order-last md:px-[25px] sm:ml-0"
+        onClick={() => setToggle(!toggle)}
+      >
         <span className="navbar-toggler-line"></span>
         <span className="navbar-toggler-line"></span>
         <span className="navbar-toggler-line"></span>
         <span className="navbar-toggler-line"></span>
       </Navbar.Toggle>
-      <Navbar.Collapse id="myCollapsible" className={`col-auto justify-center mobile-menu-${props.type}`}>
+      <Navbar.Collapse
+        id="myCollapsible"
+        className={`col-auto justify-center mobile-menu-${props.type}`}
+      >
         <Navbar.Toggle id="close-btn" onClick={() => setToggle(!toggle)}>
           <span className="navbar-toggler-line bg-white"></span>
           <span className="navbar-toggler-line bg-white"></span>
@@ -417,56 +511,70 @@ export const MobileMenu = (props) => {
             <ul className="navbar-nav">
               {props.data.map((item, i) => {
                 return (
-                  <li className={`nav-item${item.dropdown || item.megamenu ? ` dropdown` : ""}${isMenuActive === i ? " open" : ""}`} key={i}>
-                    {
-                      item.link ? (
-                        <Link className="nav-link" to={item.link}>
-                          {item.title}
-                        </Link>
-                      ) : (
-                        <span className="nav-link">{item.title}</span>
-                      )
-                    }
-                    <i className="fa fa-angle-down" onClick={(e) => handleMenuClick(e, i)} />
+                  <li
+                    className={`nav-item${
+                      item.dropdown || item.megamenu ? ` dropdown` : ""
+                    }${isMenuActive === i ? " open" : ""}`}
+                    key={i}
+                  >
+                    {item.link ? (
+                      <Link className="nav-link" to={item.link}>
+                        {item.title}
+                      </Link>
+                    ) : (
+                      <span className="nav-link">{item.title}</span>
+                    )}
+                    <i
+                      className="fa fa-angle-down"
+                      onClick={(e) => handleMenuClick(e, i)}
+                    />
                     {item.dropdown && (
                       <ul className="simple-dropdown-menu">
                         {item.dropdown.map((item, i) => {
                           return (
                             <li key={i} className="simple-dropdown">
-                              {
-                                item.link ? (
-                                  <Link className="nav-link" to={item.link}>
-                                    {item.title}
-                                    {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                  </Link>
-                                ) : (
-                                  <span className="nav-link">
-                                    {item.title}
-                                    {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                  </span>
-                                )
-                              }
+                              {item.link ? (
+                                <Link className="nav-link" to={item.link}>
+                                  {item.title}
+                                  {item.dropdown && (
+                                    <i className="fas fa-angle-right"></i>
+                                  )}
+                                </Link>
+                              ) : (
+                                <span className="nav-link">
+                                  {item.title}
+                                  {item.dropdown && (
+                                    <i className="fas fa-angle-right"></i>
+                                  )}
+                                </span>
+                              )}
                               {item.dropdown && (
                                 <ul className="simple-dropdown-menu">
                                   {item.dropdown.map((item, i) => {
                                     return (
                                       <li key={i} className="simple-dropdown">
-                                        {
-                                          item.link ? (
-                                            <Link
-                                              className={`nav-link${item.dropdown ? " md:text-black md:mt-[15px] md:mb-[7px]" : ""}`}
-                                              to={item.link}
-                                            >
-                                              {item.title}
-                                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                            </Link>
-                                          ) : (
-                                            <span className="nav-link">
-                                              {item.title}
-                                              {item.dropdown && (<i className="fas fa-angle-right"></i>)}
-                                            </span>
-                                          )
-                                        }
+                                        {item.link ? (
+                                          <Link
+                                            className={`nav-link${
+                                              item.dropdown
+                                                ? " md:text-black md:mt-[15px] md:mb-[7px]"
+                                                : ""
+                                            }`}
+                                            to={item.link}
+                                          >
+                                            {item.title}
+                                            {item.dropdown && (
+                                              <i className="fas fa-angle-right"></i>
+                                            )}
+                                          </Link>
+                                        ) : (
+                                          <span className="nav-link">
+                                            {item.title}
+                                            {item.dropdown && (
+                                              <i className="fas fa-angle-right"></i>
+                                            )}
+                                          </span>
+                                        )}
                                         {item.dropdown && (
                                           <ul className="simple-dropdown-menu">
                                             {item.dropdown.map((item, i) => {
@@ -475,7 +583,12 @@ export const MobileMenu = (props) => {
                                                   className="simple-dropdown"
                                                   key={i}
                                                 >
-                                                  <Link className="nav-link" to={item.link}>{item.title}</Link>
+                                                  <Link
+                                                    className="nav-link"
+                                                    to={item.link}
+                                                  >
+                                                    {item.title}
+                                                  </Link>
                                                 </li>
                                               );
                                             })}
@@ -496,7 +609,15 @@ export const MobileMenu = (props) => {
                         <div className="flex">
                           {item.megamenu.map((item, i) => {
                             return (
-                              <ul key={i} className={`${(item.dropdown.filter(item => item.img).length > 0) ? "img-wrapper" : "inline-block"}`}>
+                              <ul
+                                key={i}
+                                className={`${
+                                  item.dropdown.filter((item) => item.img)
+                                    .length > 0
+                                    ? "img-wrapper"
+                                    : "inline-block"
+                                }`}
+                              >
                                 <li className="title text-md font-medium mb-[10px] whitespace-nowrap">
                                   {item.title}
                                 </li>
@@ -569,7 +690,10 @@ export const HamburgerMenu = memo((props) => {
           expand={expand}
           className={`header-push-button bg-transparent inline-block ${props.theme}`}
         >
-          <Navbar.Toggle className={`push-button`} onClick={() => setShow(true)}>
+          <Navbar.Toggle
+            className={`push-button`}
+            onClick={() => setShow(true)}
+          >
             <div className="nav-icon">
               <span className="navbar-toggler-line"></span>
               <span className="navbar-toggler-line"></span>
@@ -577,13 +701,25 @@ export const HamburgerMenu = memo((props) => {
               <span className="navbar-toggler-line"></span>
             </div>
           </Navbar.Toggle>
-          <div className={`${show ? "block h-[100vh] left-0 overflow-hidden fixed top-0 w-full z-[999]" : ""}`}>
+          <div
+            className={`${
+              show
+                ? "block h-[100vh] left-0 overflow-hidden fixed top-0 w-full z-[999]"
+                : ""
+            }`}
+          >
             <div
-              ref={ref} className={`hamburger-menu-wrapper pos-${props.position}${show ? " show" : ""
-                }${props.className ? ` ${props.className}` : ""}`}
+              ref={ref}
+              className={`hamburger-menu-wrapper pos-${props.position}${
+                show ? " show" : ""
+              }${props.className ? ` ${props.className}` : ""}`}
             >
               {props.closeBtn && (
-                <button aria-label="hamburger menu close button" className="close-btn" onClick={() => setShow(false)}>
+                <button
+                  aria-label="hamburger menu close button"
+                  className="close-btn"
+                  onClick={() => setShow(false)}
+                >
                   <i className="fas fa-times"></i>
                 </button>
               )}
@@ -630,72 +766,82 @@ export const SearchBar = memo((props) => {
   }, []);
 
   return (
-    <div className={`header-search-iconbar inline-block align-middle pl-[17px] text-[17px] leading-none${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <Link to="#" aria-label="search" className="search-form-icon leading-[20px]" onClick={(e) => e.preventDefault()}>
-        <i className={`feather-search px-0 inline-block${props.className ? ` ${props.className}` : ""}`} onClick={() => setSearchModalOpen(true)}></i>
+    <div
+      className={`header-search-iconbar inline-block align-middle pl-[17px] text-[17px] leading-none${
+        props.className ? ` ${props.className}` : ""
+      }`}
+      style={props.style}
+    >
+      <Link
+        to="#"
+        aria-label="search"
+        className="search-form-icon leading-[20px]"
+        onClick={(e) => e.preventDefault()}
+      >
+        <i
+          className={`feather-search px-0 inline-block${
+            props.className ? ` ${props.className}` : ""
+          }`}
+          onClick={() => setSearchModalOpen(true)}
+        ></i>
       </Link>
 
       {/* Search pop-up model Start */}
-      <div
-        className={`form-wrapper ${isSearchModalOpen ? " show" : ""
-          }`}
-      >
+      <div className={`form-wrapper ${isSearchModalOpen ? " show" : ""}`}>
         <button
           title="Close"
           type="button"
           className="search-close font-serif"
           onClick={() => setSearchModalOpen(false)}
         >
-
           ×{" "}
         </button>
-        {
-          isSearchModalOpen && (
-            <Formik
-              initialValues={{ search: "" }}
-              validationSchema={Yup.object().shape({ search: Yup.string().required("Field is required.") })}
-              onSubmit={async (values, actions) => {
-                await new Promise((r) => setTimeout(r, 500));
-                actions.resetForm();
-                setSearchModalOpen(false);
-                navigate("/page/search-result", { state: { search: values } });
-              }}
+        {isSearchModalOpen && (
+          <Formik
+            initialValues={{ search: "" }}
+            validationSchema={Yup.object().shape({
+              search: Yup.string().required("Field is required."),
+            })}
+            onSubmit={async (values, actions) => {
+              await new Promise((r) => setTimeout(r, 500));
+              actions.resetForm();
+              setSearchModalOpen(false);
+              navigate("/page/search-result", { state: { search: values } });
+            }}
+          >
+            <Form
+              role="search"
+              method="get"
+              id="search-form"
+              className="search-form text-start"
+              ref={ref}
             >
-              <Form
-                role="search"
-                method="get"
-                id="search-form"
-                className="search-form text-start"
-                ref={ref}
-              >
-                <div className="search-form-box">
-                  <Input
-                    showErrorMsg={false}
-                    className="search-input font-serif text-darkgray relative border-b border-solid border-darkgray"
-                    name="search"
-                    type="text"
-                    label={
-                      <span className="search-label font-medium text-spanishgray text-sm font-serif uppercase block">
-
-                        What are you looking for?{" "}
-                      </span>
-                    }
-                    placeholder="Enter your keywords..."
-                  />
-                  <button
-                    type="submit"
-                    className="search-button absolute top-1/2 right-0"
-                  >
-                    <i
-                      className="feather-search text-darkgray"
-                      aria-hidden="true"
-                    ></i>
-                  </button>
-                </div>
-              </Form>
-            </Formik>
-          )
-        }
+              <div className="search-form-box">
+                <Input
+                  showErrorMsg={false}
+                  className="search-input font-serif text-darkgray relative border-b border-solid border-darkgray"
+                  name="search"
+                  type="text"
+                  label={
+                    <span className="search-label font-medium text-spanishgray text-sm font-serif uppercase block">
+                      What are you looking for?{" "}
+                    </span>
+                  }
+                  placeholder="Enter your keywords..."
+                />
+                <button
+                  type="submit"
+                  className="search-button absolute top-1/2 right-0"
+                >
+                  <i
+                    className="feather-search text-darkgray"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+              </div>
+            </Form>
+          </Formik>
+        )}
       </div>
       {/* Search pop-up model End */}
     </div>
@@ -706,13 +852,25 @@ export const SearchBar = memo((props) => {
 /* HeaderLanguage Component Start */
 export const HeaderLanguage = (props) => {
   return (
-    <div className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <Link to="#" aria-label="language" onClick={e => e.preventDefault()}>
-        <i className={`feather-globe py-[30px] px-0 inline-block ${props.className}`}></i>
+    <div
+      className={`header-language dropdown inline-block align-middle pl-[17px] text-[17px]${
+        props.className ? ` ${props.className}` : ""
+      }`}
+      style={props.style}
+    >
+      <Link to="#" aria-label="language" onClick={(e) => e.preventDefault()}>
+        <i
+          className={`feather-globe py-[30px] px-0 inline-block ${props.className}`}
+        ></i>
       </Link>
       <ul className="dropdown-menu block absolute font-serif left-auto right-0 p-15px rounded-[6px] border-0 m-0 min-w-[140px]">
         <li>
-          <Link aria-label="link" onClick={((e) => e.preventDefault())} to="#" title="English">
+          <Link
+            aria-label="link"
+            onClick={(e) => e.preventDefault()}
+            to="#"
+            title="English"
+          >
             <span className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/webp/usa.webp"
@@ -725,7 +883,12 @@ export const HeaderLanguage = (props) => {
           </Link>
         </li>
         <li>
-          <Link aria-label="link" onClick={((e) => e.preventDefault())} to="#" title="England">
+          <Link
+            aria-label="link"
+            onClick={(e) => e.preventDefault()}
+            to="#"
+            title="England"
+          >
             <span className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/webp/england.webp"
@@ -738,7 +901,12 @@ export const HeaderLanguage = (props) => {
           </Link>
         </li>
         <li>
-          <Link aria-label="link" onClick={((e) => e.preventDefault())} to="#" title="France">
+          <Link
+            aria-label="link"
+            onClick={(e) => e.preventDefault()}
+            to="#"
+            title="France"
+          >
             <span className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/webp/france.webp"
@@ -751,7 +919,12 @@ export const HeaderLanguage = (props) => {
           </Link>
         </li>
         <li>
-          <Link aria-label="link" onClick={((e) => e.preventDefault())} to="#" title="Russian">
+          <Link
+            aria-label="link"
+            onClick={(e) => e.preventDefault()}
+            to="#"
+            title="Russian"
+          >
             <span className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/webp/russian.webp"
@@ -764,7 +937,12 @@ export const HeaderLanguage = (props) => {
           </Link>
         </li>
         <li>
-          <Link aria-label="link" onClick={((e) => e.preventDefault())} to="#" title="Spain">
+          <Link
+            aria-label="link"
+            onClick={(e) => e.preventDefault()}
+            to="#"
+            title="Spain"
+          >
             <span className="icon-country block py-[2px] px-0 text-xs text-[#828282]">
               <img
                 src="/assets/img/webp/spain.webp"
@@ -782,75 +960,10 @@ export const HeaderLanguage = (props) => {
 };
 /* HeaderLanguage Component End */
 
-export const HeaderCart = (props) => {
-  return (
-    <div className={`header-cart-icon dropdown mr-[10px] inline-block align-middle pl-[17px] text-[17px]${props.className ? ` ${props.className}` : ""}`} style={props.style}>
-      <Link aria-label="link" to="#" className="relative inline-block">
-        <i className={`feather-shopping-bag px-0 py-[30px] inline-block ${props.className}`} ></i>
-        <span className="cart-count font-serif bg-basecolor text-white absolute top-[20px] right-[-10px] w-[16px] h-[16px] text-center text-[9px] leading-[16px] rounded-full">
-          2
-        </span>
-      </Link>
-      <ul id="myTable" className="dropdown-menu block cart-item-list">
-        <li className="cart-item items-center">
-          <Link aria-label="link" to="#" className="font-serif close"> × </Link>
-          <div className="product-image">
-            <Link aria-label="link" to="#">
-              <img src="https://via.placeholder.com/150x191" className="cart-thumb" alt="cart-product" width={50} height={67} />
-            </Link>
-          </div>
-          <div className="product-detail font-serif">
-            <Link aria-label="link" to="#">Delica omtantur</Link>
-            <span className="item-ammount">$100.00</span>
-          </div>
-        </li>
-        <li className="cart-item items-center">
-          <Link aria-label="link" to="#" className="font-serif close"> × </Link>
-          <div className="product-image">
-            <Link aria-label="link" to="#">
-              <img src="https://via.placeholder.com/150x191" className="cart-thumb" alt="cart-product" width={50} height={67} />
-            </Link>
-          </div>
-          <div className="product-detail font-serif">
-            <Link aria-label="link" to="#">Gianvito rossi</Link>
-            <span className="item-ammount">$99.99</span>
-          </div>
-        </li>
-        <li className="cart-item cart-total">
-          <div className="font-serif mb-[15px] w-full">
-            <span className="w-[50%] inline-block text-md uppercase">
-              Subtotal:
-            </span>
-            <span className="w-[50%] inline-block text-right text-md font-medium">
-              $199.99
-            </span>
-          </div>
-          <Buttons
-            to="/shop/shopping-cart"
-            className="btn-fill rounded-none font-medium font-serif uppercase md:mb-[15px]"
-            themeColor="#232323"
-            color="#fff"
-            size="sm"
-            title="view cart"
-          />
-          <Buttons
-            to="/shop/checkout"
-            className="btn-fill rounded-none font-medium font-serif mb-0 uppercase sm:mb-[15px]"
-            themeColor="#0038e3"
-            color="#fff"
-            size="sm"
-            title="checkout"
-          />
-        </li>
-      </ul>
-    </div>
-  );
-};
-
 /* Collapsible Menu Component Start */
 export const CollapsibleMenu = (props) => {
-  const collapsibleMenu = useRef(null)
-  let location = useLocation()
+  const collapsibleMenu = useRef(null);
+  let location = useLocation();
 
   useEffect(() => {
     let mainSelector = collapsibleMenu.current,
@@ -858,48 +971,63 @@ export const CollapsibleMenu = (props) => {
 
     function getPerentsElements(elem) {
       var parants = [];
-      while (elem.parentNode && elem.parentNode.nodeName.toLowerCase() !== 'body') {
+      while (
+        elem.parentNode &&
+        elem.parentNode.nodeName.toLowerCase() !== "body"
+      ) {
         elem = elem.parentNode;
         parants.push(elem);
       }
-      return parants
+      return parants;
     }
 
-    mainlink.forEach(item => {
+    mainlink.forEach((item) => {
       let attr = item.getAttribute("href");
-      item.closest(".menu-list-item") && item.closest(".menu-list-item").classList.remove("active")
+      item.closest(".menu-list-item") &&
+        item.closest(".menu-list-item").classList.remove("active");
 
       if (attr === location.pathname) {
-        item.closest(".menu-list-item") && item.closest(".menu-list-item").classList.add("active")
+        item.closest(".menu-list-item") &&
+          item.closest(".menu-list-item").classList.add("active");
         if (item.closest(".megamenu")) {
-          item.closest(".menu-list-item") && item.closest(".menu-list-item").classList.add("active");
+          item.closest(".menu-list-item") &&
+            item.closest(".menu-list-item").classList.add("active");
         }
 
-        item.closest(".accordion") && item.closest(".accordion").querySelectorAll(".accordion-item").forEach(item => item.classList.remove("active"))
-        let filter_dropdown = getPerentsElements(item).filter(item => item.classList.contains('accordion-item'))
-        filter_dropdown.forEach(item => item.classList.add("active"))
+        item.closest(".accordion") &&
+          item
+            .closest(".accordion")
+            .querySelectorAll(".accordion-item")
+            .forEach((item) => item.classList.remove("active"));
+        let filter_dropdown = getPerentsElements(item).filter((item) =>
+          item.classList.contains("accordion-item")
+        );
+        filter_dropdown.forEach((item) => item.classList.add("active"));
       }
-    })
-  }, [location])
+    });
+  }, [location]);
 
   return (
     <Accordion
       ref={collapsibleMenu}
-      className={`collapsible-menu${props.theme ? ` ${props.theme}` : ""}${props.className ? ` ${props.className}` : ""
-        }`}
+      className={`collapsible-menu${props.theme ? ` ${props.theme}` : ""}${
+        props.className ? ` ${props.className}` : ""
+      }`}
     >
       {HeaderData &&
         HeaderData.map((item, i) => {
           return (
             <Accordion.Item key={i} eventKey={i}>
               <Accordion.Header>
-                {
-                  item.link ? (<Link aria-label="link" className="menu-link"
-                    to={item.link} > {item.title} </Link>)
-                    : (<span className="menu-link"> {item.title} </span>)
-                }
+                {item.link ? (
+                  <Link aria-label="link" className="menu-link" to={item.link}>
+                    {" "}
+                    {item.title}{" "}
+                  </Link>
+                ) : (
+                  <span className="menu-link"> {item.title} </span>
+                )}
               </Accordion.Header>
-              
             </Accordion.Item>
           );
         })}

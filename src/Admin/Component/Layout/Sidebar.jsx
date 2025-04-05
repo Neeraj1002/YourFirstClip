@@ -24,7 +24,7 @@ const Sidebar = ({activeSidebar}) => {
       </li>
       <li
         className="p-2 rounded cursor-pointer hover:bg-gray-700 hover:text-gray-300 transition transform hover:scale-110"
-        onClick={() => navigate('/admin/portfolios')}
+        onClick={() => navigate('/admin/admin-portfolios')}
       >
         Portfolios
       </li>
