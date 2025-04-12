@@ -5,7 +5,7 @@
     @apply text-black border-transparent;
 
     span {
-      @apply border-black border-b border-solid;
+      @apply border-yellow-300 border-b border-solid;
     }
   }
 
@@ -542,7 +542,14 @@
     transform: translateY(-5px);
 
     .portfolio-image {
-      background-image: linear-gradient(to right top, #0039e3, #4132e0, #5e28dd, #741bd9, #8600d4);
+      background-image: linear-gradient(
+        to right top,
+        #0039e3,
+        #4132e0,
+        #5e28dd,
+        #741bd9,
+        #8600d4
+      );
       transform: scale(1, 1);
 
       img {

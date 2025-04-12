@@ -15,6 +15,7 @@ export const usePortfolio = () => useContext(PortfolioContext);
 // PortfolioProvider component
 export const PortfolioProvider = ({ children }) => {
   const [portfolios, setPortfolios] = useState([]);
+  const [clientPortfolios, setClientPortfolios] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -30,7 +31,20 @@ export const PortfolioProvider = ({ children }) => {
     try {
       const data = await fetchPortfolios();
       setPortfolios(data.data); // Assuming API response structure has `data` property with portfolio list
-     
+      setClientPortfolios(
+        data.data
+          .filter((item) => item.isLive) // Filter only live items
+          .map((item, i) => ({
+            id: item.id,
+            title: item.title,
+            img: `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`,
+            category: [item.type.toLowerCase().replace(/_/g, " ")], // for filtering
+            subtitle: item.description,
+            link: `https://www.youtube.com/embed/${item.videoId}`, // or your actual route
+            double_col: false,
+          }))
+      )
+
     } catch (err) {
       handleError(err); // Use helper function to handle error
     } finally {
@@ -98,6 +112,7 @@ export const PortfolioProvider = ({ children }) => {
     <PortfolioContext.Provider
       value={{
         portfolios,
+        clientPortfolios,
         loading,
         error,
         loadPortfolios,

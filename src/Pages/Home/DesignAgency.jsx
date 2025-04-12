@@ -19,8 +19,8 @@ import IconWithText from "../../Components/IconWithText/IconWithText";
 import PortfolioBordered from "../../Components/Portfolio/PortfolioBordered";
 import SocialIcons from "../../Components/SocialIcon/SocialIcons";
 import CustomModal from "../../Components/CustomModal";
-import { Footer } from "../../Components/Footers/Footer";
-
+import FooterStyle01 from "../../Components/Footers/FooterStyle01";
+import Spinner from "../../Admin/Component/Common/Spinner";
 // Data
 import {
   IconWithTextData_05,
@@ -68,32 +68,20 @@ const HeaderSocialIconsData = [
 ];
 
 const DesignagencyPage = (props) => {
-  const { portfolios, loadPortfolios } = usePortfolio();
+  const { loading, clientPortfolios, loadPortfolios } = usePortfolio();
   const [portfolioData, setPortfolioData] = useState([]);
 
   useEffect(() => {
     loadPortfolios();
-  }, [portfolios.length]);
+  }, [clientPortfolios.length]);
 
   useEffect(() => {
-    if (portfolios.length > 0) {
-      setPortfolioData(
-        portfolios
-          .slice(0, 9)
-          .filter((item) => item.isLive) // Filter only live items
-          .map((item, i) => ({
-            title: item.title,
-            img: `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`,
-            category: [item.type.toLowerCase().replace(/_/g, " ")], // for filtering
-            subtitle: item.description,
-            link: `/portfolio/${item.id}`, // or your actual route
-            double_col: false,
-          }))
-      );
+    if (clientPortfolios.length > 0) {
+      setPortfolioData(clientPortfolios.slice(0, 9));
     }
-  }, [portfolios]);
+  }, [clientPortfolios]);
 
-  return (
+  return !loading ? (
     <>
       <div className="bg-white" style={props.style}>
         {/* Header Start */}
@@ -248,7 +236,10 @@ const DesignagencyPage = (props) => {
               >
                 <m.h2
                   className="heading-4 font-serif font-semibold text-darkgray block mb-0 pr-10 -tracking-[1px] lg:pr-0"
-                  {...{ ...fadeIn, transition: { duration: 0.7, delay: 0.5 } }}
+                  {...{
+                    ...fadeIn,
+                    transition: { duration: 0.7, delay: 0.5 },
+                  }}
                 >
                   Great agency specialising in creative video editing
                 </m.h2>
@@ -437,63 +428,12 @@ const DesignagencyPage = (props) => {
       </div>
 
       {/* Footer Start */}
-      <Footer
-        parallax={{ desktop: true, lg: false }}
-        className="py-[6%] border-t border-mediumgray xs:py-[13%]"
-      >
-        <Container>
-          <Row>
-            <Col
-              className="xl:text-left md:text-center last:m-0 md:mt-[25px]"
-              lg={{ span: 6, order: 1 }}
-              md={{ span: 12, order: 3 }}
-              xs={{ span: 12, order: 3 }}
-            >
-              <Link
-                aria-label="footer home link"
-                to="/"
-                className="text-slateblue mb-[10px] md:mb-[5px] md:mt-0 inline-block"
-              >
-                <img
-                  src="/assets/img/webp/logo-black.webp"
-                  alt="logo"
-                  width={111}
-                  height={36}
-                />
-              </Link>
-              <p>
-                © Copyright {new Date().getFullYear()}{" "}
-                <a
-                  aria-label="footer litho link"
-                  href="/"
-                  className="underline underline-offset-4 text-black font-medium hover:text-white"
-                >
-                  Your First Clip
-                </a>
-              </p>
-            </Col>
-            <Col
-              className="text-center md:text-right sm:mb-[10px]"
-              lg={{ span: 6, order: 3 }}
-              md={{ span: 6, order: 2 }}
-              xs={{ span: 12, order: 2 }}
-            >
-              <span className="mb-[15px] block text-right sm:text-center">
-                Connect with social
-              </span>
-              <SocialIcons
-                theme="social-icon-style-01"
-                className="justify-end sm:justify-center"
-                size="xs"
-                iconColor="dark"
-                data={FooterSocialIconData}
-              />
-            </Col>
-          </Row>
-        </Container>
-      </Footer>
+      <FooterStyle01 theme="dark" className="bg-[#262b35] text-slateblue" />
+
       {/* Footer End */}
     </>
+  ) : (
+    <Spinner />
   );
 };
 

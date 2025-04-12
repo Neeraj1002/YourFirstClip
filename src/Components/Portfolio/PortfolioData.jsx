@@ -1980,27 +1980,35 @@ const FilterData = [
   },
   {
     title: "Reels",
-    key: "reels",
+    key: "REELS",
   },
   {
     title: "TVC",
-    key: "tvc",
+    key: "TVC",
   },
   {
-    title: "Social Media Ads",
-    key: "social_media_ads",
+    title: "Corporate Films",
+    key: "CORPORATE_FILM",
   },
   {
     title: "Short Films",
-    key: "short_films",
+    key: "SHORT_FILM",
   },
   {
     title: "Music Video",
-    key: "music_video",
+    key: "MUSIC_VIDEO",
   },
   {
     title: "Podcast",
-    key: "podcast",
+    key: "PODCAST",
+  },
+  {
+    title: "Documentary",
+    key: "DOCUMENTARY",
+  },
+  {
+    title: "VLOG",
+    key: "VLOG",
   },
 ];
 

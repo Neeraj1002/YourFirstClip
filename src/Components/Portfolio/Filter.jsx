@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // Libraries
 import { Col, Container, Row } from "react-bootstrap";
@@ -18,10 +19,20 @@ const Filter = (props) => {
           } items-center md:justify-center md:items-center md:text-center md:flex-col`}
         >
           {props.title && (
-            <Col xs="auto" className="md:mb-[30px]">
-              <h3 className="heading-4 font-serif m-0 p-0 font-semibold text-darkgray tracking-[-1px] relative after:content-[''] after:block after:h-[4px] after:w-[2000px] after:bg-[#ffd100] after:mt-2">
-                {props.title}
-              </h3>
+            <Col xs="12" className="md:mb-[30px]">
+              <div className="flex items-center space-x-12 md:flex-wrap md:justify-center">
+                <h3 className="heading-4 font-serif m-0 p-0 font-semibold text-darkgray tracking-[-1px] relative after:content-[''] after:block after:h-[4px] after:bg-[#ffd100] after:mt-2">
+                  {props.title}
+                </h3>
+                <div className="mt-2">
+                  <Link
+                    to="/portfolio"
+                    className="text-lg text-blue-500  hover:underline whitespace-nowrap md:mt-2 "
+                  >
+                    View All
+                  </Link>
+                </div>
+              </div>
             </Col>
           )}
           <Col xs="auto">
@@ -58,4 +69,5 @@ Filter.propTypes = {
       title: PropTypes.string,
     })
   ),
+  link: PropTypes.string,
 };
