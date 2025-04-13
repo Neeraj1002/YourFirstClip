@@ -5,7 +5,7 @@ const HeaderData = [
   },
   {
     title: "Portfolio",
-    link: "/portfolios",
+    link: "/portfolio",
   },
 
   //   {

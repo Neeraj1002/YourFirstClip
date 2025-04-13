@@ -30,9 +30,10 @@ const DesignagencyPage = lazy(() => import("./Pages/Home/DesignAgency"));
 // const PortfolioPage = lazy(() => import("./Pages/Portfolios"));
 
 
-const SingleProjectPage03 = lazy(() =>
-  import("./Pages/Portfolio/SingleProjectPage03")
+const ThreeColumnPortfolio = lazy(() =>
+  import("./Pages/Portfolio/ThreeColumnPortfolio")
 );
+
 
 
 // Footer
@@ -184,12 +185,11 @@ function App() {
 
                     {/* Portfolios */}
                     <Route
-                      path="portfolios"
+                      path="portfolio"
                       element={
-                        <SingleProjectPage03 style={{ "--base-color": "#0038e3" }} />
+                        <ThreeColumnPortfolio style={{ "--base-color": "#0038e3" }} />
                       }
-                    >
-                    </Route>
+                    />
 
                     {/* Blogs */}
                     <Route
