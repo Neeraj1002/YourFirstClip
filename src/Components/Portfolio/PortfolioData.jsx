@@ -1978,38 +1978,6 @@ const FilterData = [
     title: "All",
     key: "*",
   },
-  {
-    title: "Reels",
-    key: "REELS",
-  },
-  {
-    title: "TVC",
-    key: "TVC",
-  },
-  {
-    title: "Corporate Films",
-    key: "CORPORATE_FILM",
-  },
-  {
-    title: "Short Films",
-    key: "SHORT_FILM",
-  },
-  {
-    title: "Music Video",
-    key: "MUSIC_VIDEO",
-  },
-  {
-    title: "Podcast",
-    key: "PODCAST",
-  },
-  {
-    title: "Documentary",
-    key: "DOCUMENTARY",
-  },
-  {
-    title: "VLOG",
-    key: "VLOG",
-  },
 ];
 
 const landingPageFilterData = [
