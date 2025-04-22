@@ -106,7 +106,7 @@ const DesignagencyPage = (props) => {
                     height="36"
                     loading="lazy"
                     src="/assets/img/webp/logo-black.webp"
-                    data-rjs="/assets/img/webp/logo-black@2x.webp"
+                    data-rjs="/assets/img/webp/logo-black2x.webp"
                     alt="logo"
                   />
                   <img
@@ -163,16 +163,16 @@ const DesignagencyPage = (props) => {
           <div
             className="h-full w-full left-0 top-0 absolute cover-background"
             style={{
-              backgroundImage: `url('https://litho.themezaa.com/wp-content/uploads/2020/09/home-design-agency-bg-img-01.jpg')`,
+              backgroundImage: `url(/assets/img/home.png)`,
             }}
           ></div>
           <Container className="relative">
-            <Row className="full-screen md:h-[650px] sm:h-[500px]">
+            <Row className="full-screen md:h-[650px] sm:h-[500px] justify-end sm:justify-end md:justify-end">
               <Col
                 lg={5}
                 md={6}
                 sm={7}
-                className="flex flex-col items-start justify-center"
+                className="flex flex-col items-start justify-center sm:items-end"
               >
                 <h1 className="font-serif font-semibold text-[100px] leading-[95px] text-darkgray -tracking-[4px] mb-[4.5rem] xs:w-[65%] lg:text-[90px] lg:leading-[90px] md:text-[70px] md:leading-[65px] sm:text-[45px] sm:leading-[43px] sm:-tracking-[.5px]">
                   We are Editing agency
