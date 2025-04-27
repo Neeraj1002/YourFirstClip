@@ -8,6 +8,7 @@ import { Parallax } from "react-scroll-parallax";
 import PortfolioClassic from "../../Components/Portfolio/PortfolioClassic";
 // Components
 import { Header, HeaderNav, Menu } from "../../Components/Header/Header";
+
 import FooterStyle01 from "../../Components/Footers/FooterStyle01";
 import { usePortfolio } from "../../Context/Admin/PortfolioContext";
 // Data
@@ -31,12 +32,13 @@ const ThreeColumnPortfolio = (props) => {
     <div style={props.style}>
       <Header topSpace={{ md: true }} type="reverse-scroll">
         <HeaderNav
+          fluid="fluid"
           theme="light"
           expand="lg"
-          className="py-[0px] lg:px-[15px] md:px-0"
-          containerClass="sm:px-0"
+          containerClass="md:p-0"
+          className="py-[0px] px-[35px] md:px-[15px] md:py-[20px] sm:px-0"
         >
-          <Col className="col-auto col-sm-6 col-lg-2 me-auto ps-lg-0">
+          <Col className="col-5 col-lg-2 ps-lg-0 me-auto me-lg-0">
             <Link aria-label="header logo" className="flex items-center" to="/">
               <Navbar.Brand className="inline-block p-0 m-0">
                 <img
@@ -44,8 +46,8 @@ const ThreeColumnPortfolio = (props) => {
                   width="111"
                   height="36"
                   loading="lazy"
-                  src="/assets/img/webp/logo-black.webp"
-                  data-rjs="/assets/img/webp/logo-black@2x.webp"
+                  src="/assets/img/webp/logo-white.webp"
+                  data-rjs="/assets/img/webp/logo-black2x.webp"
                   alt="logo"
                 />
                 <img
@@ -53,8 +55,8 @@ const ThreeColumnPortfolio = (props) => {
                   width="111"
                   height="36"
                   loading="lazy"
-                  src="/assets/img/webp/logo-fast-blue-black.webp"
-                  data-rjs="/assets/img/webp/logo-fast-blue-black@2x.webp"
+                  src="/assets/img/webp/logo-white.webp"
+                  data-rjs="/assets/img/webp/logo-black@2x.webp"
                   alt="logo"
                 />
                 <img
@@ -62,22 +64,20 @@ const ThreeColumnPortfolio = (props) => {
                   width="111"
                   height="36"
                   loading="lazy"
-                  src="/assets/img/webp/logo-fast-blue-black.webp"
-                  data-rjs="/assets/img/webp/logo-fast-blue-black@2x.webp"
+                  src="/assets/img/webp/logo-white.webp"
+                  data-rjs="/assets/img/webp/logo-black@2x.webp"
                   alt="logo"
                 />
               </Navbar.Brand>
             </Link>
           </Col>
-          <div className="col-auto hidden order-last md:block">
-            <Navbar.Toggle className="md:ml-[10px] sm:ml-0">
-              <span className="navbar-toggler-line"></span>
-              <span className="navbar-toggler-line"></span>
-              <span className="navbar-toggler-line"></span>
-              <span className="navbar-toggler-line"></span>
-            </Navbar.Toggle>
-          </div>
-          <Navbar.Collapse className="col-auto px-0 justify-end">
+          <Navbar.Toggle className="md:mr-[17px]">
+            <span className="navbar-toggler-line"></span>
+            <span className="navbar-toggler-line"></span>
+            <span className="navbar-toggler-line"></span>
+            <span className="navbar-toggler-line"></span>
+          </Navbar.Toggle>
+          <Navbar.Collapse className="justify-end">
             <Menu {...props} />
           </Navbar.Collapse>
         </HeaderNav>

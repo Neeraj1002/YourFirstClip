@@ -17,7 +17,6 @@ import Buttons from "../../Components/Button/Buttons";
 import Clients from "../../Components/Clients/Clients";
 import IconWithText from "../../Components/IconWithText/IconWithText";
 import PortfolioBordered from "../../Components/Portfolio/PortfolioBordered";
-import SocialIcons from "../../Components/SocialIcon/SocialIcons";
 import CustomModal from "../../Components/CustomModal";
 import FooterStyle01 from "../../Components/Footers/FooterStyle01";
 import Spinner from "../../Admin/Component/Common/Spinner";
@@ -29,24 +28,6 @@ import {
 import { FilterData } from "../../Components/Portfolio/PortfolioData";
 import { usePortfolio } from "../../Context/Admin/PortfolioContext";
 import { ClientData } from "../../Components/Clients/ClientsData";
-
-const HeaderSocialIconsData = [
-  {
-    color: "#828282",
-    link: "https://www.facebook.com/",
-    icon: "fab fa-facebook-f",
-  },
-  {
-    color: "#828282",
-    link: "https://www.instagram.com/yourfirstclip/",
-    icon: "fab fa-instagram",
-  },
-  {
-    color: "#828282",
-    link: "https://twitter.com/",
-    icon: "fab fa-twitter",
-  },
-];
 
 const DesignagencyPage = (props) => {
   const { loading, clientPortfolios, loadPortfolios } = usePortfolio();
@@ -118,17 +99,9 @@ const DesignagencyPage = (props) => {
               <span className="navbar-toggler-line"></span>
               <span className="navbar-toggler-line"></span>
             </Navbar.Toggle>
-            <Navbar.Collapse className="justify-center">
+            <Navbar.Collapse className="justify-end">
               <Menu {...props} />
             </Navbar.Collapse>
-            <Col className="col-auto col-lg-2 text-end px-lg-0">
-              <SocialIcons
-                theme="social-icon-style-01 block text-end"
-                iconColor="dark"
-                size="xs"
-                data={HeaderSocialIconsData}
-              />
-            </Col>
           </HeaderNav>
         </Header>
         {/* Header End */}
