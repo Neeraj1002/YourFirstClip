@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
 import Filter from "./Filter";
-import { portfolioBorderedData } from "./PortfolioData";
 import CustomModal from "../../Components/CustomModal";
 
-const PortfolioBordered = ({ title, data, filterData, target, grid }) => {
+const PortfolioBordered = ({ title, data, grid }) => {
   const [activeVideo, setActiveVideo] = useState(null);
 
   const handleVideoClick = (link) => {
@@ -25,9 +24,9 @@ const PortfolioBordered = ({ title, data, filterData, target, grid }) => {
       {title && <Filter title={title} link={"/portfolio"} />}
 
       {/* Portfolio Grid */}
-      <ul className="grid grid-cols-4 sm:grid-cols-1 md:grid-cols-2 gap-6">
+      <ul className="sm:columns-1 md:columns-2 columns-3 gap-4">
         {data.map((item, i) => (
-          <li key={i} className="portfolio-item">
+          <li key={i} className="mb-4 break-inside-avoid">
             <CustomModal.Wrapper
               modalBtn={
                 <div
@@ -87,10 +86,6 @@ const PortfolioBordered = ({ title, data, filterData, target, grid }) => {
       </ul>
     </div>
   );
-};
-
-PortfolioBordered.defaultProps = {
-  data: portfolioBorderedData,
 };
 
 PortfolioBordered.propTypes = {

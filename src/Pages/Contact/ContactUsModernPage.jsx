@@ -2,9 +2,8 @@ import React, { useRef } from "react";
 
 // Libraries
 import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Parallax } from "react-scroll-parallax";
 import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Keyboard } from "swiper/modules";
 import { Formik, Form } from "formik";
 import { AnimatePresence, m } from "framer-motion";
 
@@ -14,23 +13,9 @@ import Buttons from "../../Components/Button/Buttons";
 import { ContactFormStyle02Schema } from "../../Components/Form/FormSchema";
 import { Input, TextArea } from "../../Components/Form/Form";
 import MessageBox from "../../Components/MessageBox/MessageBox";
-import GoogleMap from "../../Components/GoogleMap/GoogleMap";
 import FooterStyle01 from "../../Components/Footers/FooterStyle01";
 import { fadeIn } from "../../Functions/GlobalAnimations";
 import { sendEmail, resetForm } from "../../Functions/Utilities";
-
-// Data
-const SwiperImgData = [
-  {
-    img: "https://via.placeholder.com/1920x730",
-  },
-  {
-    img: "https://via.placeholder.com/1920x730",
-  },
-  {
-    img: "https://via.placeholder.com/1920x730",
-  },
-];
 
 const ContactUsModernPage = (props) => {
   const form = useRef(null);
@@ -42,7 +27,7 @@ const ContactUsModernPage = (props) => {
         <HeaderNav
           theme="light"
           expand="lg"
-          className="py-[0px] border-b !border-b-[#0000001a] lg:px-[15px] md:px-0"
+          className="py-[0px] lg:px-[15px] md:px-0"
           containerClass="sm:px-0"
         >
           <Col className="col-auto col-sm-6 col-lg-2 me-auto ps-lg-0">
@@ -92,30 +77,41 @@ const ContactUsModernPage = (props) => {
         </HeaderNav>
       </Header>
       {/* Header End */}
-
-      {/* Section Start */}
-      <section className="bg-gradient-to-tr from-[#f6054a99] via-[#f1dd4e] to-[#ff949b] py-[130px] lg:py-[90px] md:py-[75px] sm:py-[50px]">
-        <Container className="h-[300px] sm:h-[250px] flex justify-center sm:justify-end">
-          <Row xs={1} md={2} className="items-end justify-end sm:flex-col">
-            <Col className="p-0 sm:!px-[15px] sm:mb-[20px]">
-              <h1 className="text-xmd !leading-[20px] pl-[90px] pr-[15px] text-darkgray font-serif mb-0 relative sm:pl-[55px] md:mb-0 sm:mb-[20px]">
-                <span className="h-[1px] absolute top-[12px] left-0 w-[70px] bg-black sm:w-[40px] sm:top-1/2"></span>
-                Get in touch
+      {/* Parallax Section Start */}
+      <div className="py-[80px] h-auto overflow-hidden md:relative md:py-[40px]">
+        <Parallax
+          className="lg-no-parallax absolute top-[0] w-full h-full bg-cover"
+          translateY={[-40, 40]}
+          style={{
+            backgroundImage: `url(/assets/img/webp/portfolio-bg2.webp)`,
+          }}
+        ></Parallax>
+        <Container className="h-full relative">
+          <Row className="justify-center h-[300px] sm:h-[250px]">
+            <Col
+              xl={6}
+              lg={6}
+              sm={8}
+              className="text-center flex justify-center flex-col font-serif"
+            >
+              <h1 className="text-gradient bg-gradient-to-r from-[#556fff] via-[#e05fc4] to-[#ff798e] mb-[15px] inline-block text-xmd leading-[20px]">
+                Get{" "}
+                <span className="text-yellow-500 text-4xl font-bold">
+                  Get in touch
+                </span>{" "}
               </h1>
-            </Col>
-            <Col className="p-0 sm:!px-[15px]">
-              <h4 className="font-medium text-darkgray font-serif mb-0">
+              <h2 className="text-gradient bg-gradient-to-r from-[#556fff] via-[#e05fc4] to-[#ff798e] font-medium -tracking-[1px] mb-0">
                 Let’s collaborate to bring your stories to life through stunning
                 edits.
-              </h4>
+              </h2>
             </Col>
           </Row>
         </Container>
-      </section>
-      {/* Section End */}
+      </div>
+      {/* Parallax Section End */}
 
       {/* Section Start */}
-      <section className="py-[160px] lg:py-[120px] md:py-[95px] sm:py-[80px] xs:py-[50px]">
+      <section className="pb-[130px] lg:pb-[90px] md:pb-[75px] sm:pb-[50px] bg-lightgray relative">
         <Container>
           <Row className="items-end justify-center">
             <Col className="col-12 col-lg-5 col-md-8 md:mb-[50px]">
