@@ -33,7 +33,7 @@ const ThreeColumnPortfolio = (props) => {
         <HeaderNav
           theme="light"
           expand="lg"
-          className="py-[0px] border-b !border-b-[#0000001a] lg:px-[15px] md:px-0"
+          className="py-[0px] lg:px-[15px] md:px-0"
           containerClass="sm:px-0"
         >
           <Col className="col-auto col-sm-6 col-lg-2 me-auto ps-lg-0">
@@ -86,7 +86,7 @@ const ThreeColumnPortfolio = (props) => {
       {/* Parallax Section Start */}
       <div className="py-[80px] h-auto overflow-hidden md:relative md:py-[40px]">
         <Parallax
-          className="lg-no-parallax absolute top-[0] w-full h-full lg:bg-cover"
+          className="lg-no-parallax absolute top-[0] w-full h-full bg-cover"
           translateY={[-40, 40]}
           style={{
             backgroundImage: `url(/assets/img/webp/portfolio-bg2.webp)`,
@@ -107,7 +107,7 @@ const ThreeColumnPortfolio = (props) => {
                 </span>{" "}
                 Editing Showcase
               </h1>
-              <h2 className="text-darkgray font-medium -tracking-[1px] mb-0">
+              <h2 className="text-gradient bg-gradient-to-r from-[#556fff] via-[#e05fc4] to-[#ff798e] font-medium -tracking-[1px] mb-0">
                 Professional Edits for Every Story
               </h2>
             </Col>

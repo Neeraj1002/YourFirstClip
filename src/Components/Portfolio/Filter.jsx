@@ -6,13 +6,13 @@ import { Col, Container, Row } from "react-bootstrap";
 import { PropTypes } from "prop-types";
 
 const Filter = (props) => {
-  const handleFilterChange = () => {
-    props.onFilterChange && props.onFilterChange();
+  const handleFilterChange = (filter) => {
+    props.onFilterChange && props.onFilterChange(filter);
   };
 
   return (
     (props.title || props.filterData) && (
-      <Container className="mb-24 md:mb-[4.5rem] sm:mb-8">
+      <Container className="mb-24 md:mb-[4.5rem] sm:mb-8 mt-4">
         <Row
           className={`${
             props.title ? "justify-between" : "justify-center"
@@ -42,9 +42,15 @@ const Filter = (props) => {
                   return (
                     <li
                       key={i}
-                      className={`px-[20px]${i === 0 ? " active" : ""}`}
+                      className={`px-[20px]${
+                        props.activeFilter === item.key ? " active" : ""
+                      }`}
                     >
-                      <span data-filter={item.key} onClick={handleFilterChange}>
+                      <span
+                        data-filter={item.key}
+                        onClick={() => handleFilterChange(item.key)}
+                        className="cursor-pointer"
+                      >
                         {item.title}
                       </span>
                     </li>

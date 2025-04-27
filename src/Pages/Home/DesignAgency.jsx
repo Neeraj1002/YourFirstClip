@@ -30,25 +30,6 @@ import { FilterData } from "../../Components/Portfolio/PortfolioData";
 import { usePortfolio } from "../../Context/Admin/PortfolioContext";
 import { ClientData } from "../../Components/Clients/ClientsData";
 
-const FooterSocialIconData = [
-  {
-    color: "#828282",
-    link: "https://www.facebook.com/",
-    icon: "fab fa-facebook-f",
-  },
-
-  {
-    color: "#828282",
-    link: "https://twitter.com/",
-    icon: "fab fa-twitter",
-  },
-  {
-    color: "#828282",
-    link: "https://www.instagram.com/yourfirstclip/",
-    icon: "fab fa-instagram",
-  },
-];
-
 const HeaderSocialIconsData = [
   {
     color: "#828282",
@@ -77,7 +58,8 @@ const DesignagencyPage = (props) => {
 
   useEffect(() => {
     if (clientPortfolios.length > 0) {
-      setPortfolioData(clientPortfolios.slice(0, 9));
+      const shuffled = [...clientPortfolios].sort(() => 0.5 - Math.random());
+      setPortfolioData(shuffled.slice(0, 9));
     }
   }, [clientPortfolios]);
 
@@ -105,7 +87,7 @@ const DesignagencyPage = (props) => {
                     width="111"
                     height="36"
                     loading="lazy"
-                    src="/assets/img/webp/logo-black.webp"
+                    src="/assets/img/webp/logo-white.webp"
                     data-rjs="/assets/img/webp/logo-black2x.webp"
                     alt="logo"
                   />
@@ -114,7 +96,7 @@ const DesignagencyPage = (props) => {
                     width="111"
                     height="36"
                     loading="lazy"
-                    src="/assets/img/webp/logo-black.webp"
+                    src="/assets/img/webp/logo-white.webp"
                     data-rjs="/assets/img/webp/logo-black@2x.webp"
                     alt="logo"
                   />
@@ -123,7 +105,7 @@ const DesignagencyPage = (props) => {
                     width="111"
                     height="36"
                     loading="lazy"
-                    src="/assets/img/webp/logo-black.webp"
+                    src="/assets/img/webp/logo-white.webp"
                     data-rjs="/assets/img/webp/logo-black@2x.webp"
                     alt="logo"
                   />
